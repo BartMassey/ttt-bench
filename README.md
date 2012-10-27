@@ -10,8 +10,9 @@ before proving the draw.
 
 I used standard language tools, and the fastest simple
 settings I could manage. The C was compiled with -O2 and the
-Java with -O.  I don't have access to Matlab; I would be
-curious to find out how its performance compares with
+Java with -O. The JavaScript was run with the d8 shell of
+the v8 interpreter. I don't have access to Matlab; I would
+be curious to find out how its performance compares with
 Octave's on this benchmark.
 
 Timings on my home machine (2GHz Intel Core 2 Quad Q9300)
@@ -19,6 +20,7 @@ are as follows:
 
     C:          0.05s
     Java:       0.16s
+    JavaScript: 0.25s
     Python:     8.3s
     Nickle:     14s
     Octave:     3.5m
