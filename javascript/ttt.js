@@ -21,4 +21,4 @@ board = [
   [0,  0,  0] ]
 */
 
-write(negamax(1, board) + "\n")
+print(negamax(1, board))
