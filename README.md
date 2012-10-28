@@ -11,19 +11,21 @@ before proving the draw.
 I used standard language tools, and the fastest simple
 settings I could manage. The C was compiled with -O2 and the
 Java with -O. The JavaScript was run with the d8 shell of
-the v8 interpreter. I don't have access to Matlab; I would
-be curious to find out how its performance compares with
+the v8 interpreter [1], and with the js shell of
+SpiderMonkey [2]. I don't have access to Matlab; I would be
+curious to find out how its performance compares with
 Octave's on this benchmark.
 
 Timings on my home machine (2GHz Intel Core 2 Quad Q9300)
 are as follows:
 
-    C:          0.05s
-    Java:       0.16s
-    JavaScript: 0.25s
-    Python:     8.3s
-    Nickle:     14s
-    Octave:     3.5m
+    C:               0.05s
+    Java:            0.16s
+    JavaScript [1]:  0.25s
+    JavaScript [2]:  3.0s
+    Python:          8.3s
+    Nickle:          14s
+    Octave:          3.5m
 
 Yes, Octave is 4000x slower than C on this benchmark!
 
