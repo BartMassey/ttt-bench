@@ -13,8 +13,10 @@ settings I could manage. The C was compiled with -O2 and the
 Java with -O. The JavaScript was run with the d8 shell of
 the v8 interpreter [1], with the Java-based rhino
 interpreter shell [2], and with the js shell of SpiderMonkey
-[3]. The Matlab version [4] was run on a different machine,
-because I had access to Matlab there.
+[3]. The Python version was run with stock Python 3.2.3 [4]
+and with the PyPy JIT compiler [5].  The Matlab version [6]
+was run on a different machine, because I had access to
+Matlab there.
 
 Timings on my home machine (2GHz Intel Core 2 Quad Q9300)
 are as follows:
@@ -24,9 +26,10 @@ are as follows:
     JavaScript [1]:  0.25s
     JavaScript [2]:  1.8s
     JavaScript [3]:  3.0s
-    Python:          8.3s
+    Python[4]:       8.3s
+    Python[5]:       1.63s
     Nickle:          14s
-    Matlab [4]:      15s
+    Matlab [6]:      15s
     Octave:          3.5m
 
 Yes, Octave is 4000x slower than C on this benchmark!
@@ -35,7 +38,7 @@ I was surprised to see the differences in performance
 between languages. Slow recursion might be a problem for
 this code, but most of the time is expected to be spent in
 gamevalue() checking for wins. As such, it's running the
-most generic little for loops ever.
+most generic little `for`-loops ever.
 
 I split the program across several files, for complicated
 reasons. Thus this code is also a demo of separate source
