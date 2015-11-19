@@ -10,3 +10,9 @@ path = "src/lib.rs"
 [[bin]]
 name = "ttt"
 path = "src/ttt.rs"
+
+[profile.dev]
+opt-level = 3
+debug = false
+lto = true
+debug-assertions = false
