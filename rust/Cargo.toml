@@ -1,0 +1,12 @@
+[package]
+name = "rust_ttt"
+version = "0.1.0"
+authors = ["Bart Massey <bart.massey@gmail.com>"]
+
+[lib]
+name = "tttlib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ttt"
+path = "src/ttt.rs"
