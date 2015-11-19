@@ -5,8 +5,8 @@
 
 // Perfect Tic-Tac-Toe player in Rust
 
-extern crate tttlib;
-use tttlib::negamax;
+extern crate ttt;
+use ttt::negamax;
 
 pub fn main() {
     let mut board: [[i32;3];3] = [[0;3];3];
