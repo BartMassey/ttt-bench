@@ -49,7 +49,3 @@ negamax onMove board = do
               writeIORef v (-vn)
           writeArray board (r, c) 0
     readIORef v
-
-
-testBoard :: IO (IOUArray (Int, Int) Int)
-testBoard = newListArray ((0,0),(2,2)) [1,1,-1,-1,-1,1,1,1,0]
