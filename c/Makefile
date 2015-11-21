@@ -3,7 +3,7 @@
 # Please see the file COPYING in the source
 # distribution of this software for license terms.
 
-CFLAGS = -std=c99 -O2 -Wall
+CFLAGS = -std=c99 -O2 -march=native -Wall
 
 OBJS = ttt.o negamax.o gamevalue.o
 

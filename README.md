@@ -9,28 +9,45 @@ completely unoptimized, so it searches about 550K positions
 before proving the draw.
 
 I used standard language tools, and the fastest simple
-settings I could manage. The C was compiled with -O2 and the
-Java with -O. The JavaScript was run with the d8 shell of
-the v8 interpreter [1], with the Java-based rhino
-interpreter shell [2], and with the js shell of SpiderMonkey
-[3]. The Python version was run with stock Python 3.2.3 [4]
-and with the PyPy JIT compiler [5].  The Matlab version [6]
-was run on a different machine, because I had access to
-Matlab there.
+settings I could manage.
 
-Timings on my home machine (2GHz Intel Core 2 Quad Q9300)
+Some notes on some of the implementations:
+
+* Rust: Compiled with all the optimizations I could spot
+  turned on including `-O 3` and link-time stuff.
+
+* C: Compiled with `-O2 -march=native`.
+
+* Java: Compiled with -O. Includes Java's large startup
+  overhead. Average over many runs with much variance.
+
+* JavaScript[1]: Using the d8 shell of the v8 interpreter.
+
+* JavaScript[2]: Using the js shell of SpiderMonkey.
+
+* JavaScript[3]: Using the Java-based rhino interpreter shell.
+
+* Python[1]: Using the PyPy JIT compiler.
+
+* Python[2]: Using stock Python 3.
+
+* Matlab*: Run on a different (much slower) machine,
+  because I had access to Matlab there.
+
+Timings on my home machine (Intel i7-4770K CPU @ 3.50GHz)
 are as follows:
 
-    C:               0.05s
-    Java:            0.16s
-    JavaScript [1]:  0.25s
-    JavaScript [2]:  1.8s
-    JavaScript [3]:  3.0s
-    Python[4]:       8.3s
-    Python[5]:       1.63s
-    Nickle:          14s
-    Matlab [6]:      15s
-    Octave:          3.5m
+        Rust:            0.016s
+        C:               0.022s
+        Java:            0.089s
+        JavaScript[1]:   0.10s
+        JavaScript[2]:   0.11s
+        Python[1]:       0.48s
+        JavaScript[3]:   1.06s
+        Python[2]:       4.0s
+        Nickle:          5.7s
+        Matlab*:         15s
+        Octave:          139s
 
 Yes, Octave is 4000x slower than C on this benchmark!
 
