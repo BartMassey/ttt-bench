@@ -13,14 +13,12 @@ module GameValue (gameValue)
 where
 
 import Data.Array.IArray
-import Data.Array.IO
 import Data.Array.Unboxed
 
 import Result
 
-gameValue :: Int -> IOUArray (Int, Int) Int -> IO Int
-gameValue onmove board0 = do
-  board <- freeze board0 :: IO (UArray (Int, Int) Int)
+gameValue :: Int -> UArray (Int, Int) Int -> IO Int
+gameValue onmove board =
   -- scan for win
   return $ runResult $ do
     forR [-1, 1] $ \side -> do

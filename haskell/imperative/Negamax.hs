@@ -25,13 +25,16 @@ where
 
 import Control.Monad
 import Data.Array.IO
+import Data.Array.Unboxed
 import Data.IORef
 
 import GameValue
 
 negamax :: Int -> IOUArray (Int, Int) Int -> IO Int
 negamax onMove board = do
-  v0 <- gameValue onMove board
+  v0 <- do
+    board' <- freeze board :: IO (UArray (Int, Int) Int)
+    gameValue onMove board'
   if v0 /= -2
   then
       -- game is over
