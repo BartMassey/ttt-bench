@@ -29,17 +29,17 @@ gameValue onMove board
     | checkBlanks = -2
     | otherwise = 0
     where
+      checkSide side = or [
+          -- scan for diagonal
+          has3 [ (d, d) | d <- [0..2] ],
+          -- scan for opposite diagonal
+          has3 [ (d, 2 - d) | d <- [0..2] ],
+          -- scan for rows
+          check [0..2] (\r -> has3 [ (r, c) | c <- [0..2] ]),
+          -- scan for columns
+          check [0..2] (\c -> has3 [ (r, c) | r <- [0..2] ]) ]
+          where
+            has3 ps = and $ map (\p -> board ! p == side) ps
       checkBlanks =
           -- scan for blanks
           check cells $ (\p -> board ! p == 0)
-      checkSide side =
-          -- scan for diagonal
-          sum [ 1 :: Int | d <- [0..2], board ! (d, d) == side] == 3 ||
-          -- scan for opposite diagonal
-          sum [ 1 :: Int | d <- [0..2], board ! (d, 2 - d) == side] == 3 ||
-          -- scan for rows
-          check [0..2] (\r -> 
-              sum [ 1 :: Int | c <- [0..2], board ! (r, c) == side] == 3) ||
-          -- scan for columns
-          check [0..2] (\c -> 
-              sum [ 1 :: Int | r <- [0..2], board ! (r, c) == side] == 3)
