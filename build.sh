@@ -20,3 +20,14 @@
   cd java
   rm *.class
   javac -O *.java )
+
+( echo "haskell/imperative:" >&2
+  cd haskell/imperative
+  cabal clean
+  cabal build )
+
+
+( echo "haskell/functional:" >&2
+  cd haskell/functional
+  cabal clean
+  cabal build )

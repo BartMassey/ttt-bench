@@ -30,6 +30,14 @@
     echo -n "JavaScript[3]: "
     time -f '%e' sh run.sh rhino 2>&1 >/dev/null )
 
+  ( cd haskell/imperative
+    echo -n "Haskell[1]: "
+    time -f '%e' dist/build/ttt/ttt 2>&1 >/dev/null )
+
+  ( cd haskell/functional
+    echo -n "Haskell[2]: "
+    time -f '%e' dist/build/ttt/ttt 2>&1 >/dev/null )
+
   ( cd python
     echo -n "Python[1]: "
     etime -f '%2e' pypy ttt.py 2>&1 >/dev/null
@@ -42,7 +50,10 @@
 
   ( cd octave
     echo -n "Octave: "
-    etime -f '%0e' octave ttt.m 2>&1 >/dev/null ) ) |
+    etime -f '%0e' octave ttt.m 2>&1 >/dev/null )
+
+  # We ran Matlab elsewhere
+  echo "Matlab*: 15" ) |
 
 awk '{
   times[$1] = $2
