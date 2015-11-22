@@ -38,6 +38,10 @@
     echo -n "Haskell[2]: "
     time -f '%e' dist/build/ttt/ttt 2>&1 >/dev/null )
 
+  ( cd haskell/bobw
+    echo -n "Haskell[3]: "
+    time -f '%e' dist/build/ttt/ttt 2>&1 >/dev/null )
+
   ( cd python
     echo -n "Python[1]: "
     etime -f '%2e' pypy ttt.py 2>&1 >/dev/null

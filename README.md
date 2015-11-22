@@ -37,6 +37,12 @@ Some notes on some of the implementations:
   of the Haskell code using `Data.Map` but following the
   general outline of the pseudocode. Compiled with `-O2`.
 
+* Haskell[3]: A "best of both worlds" version
+  of the Haskell code using `Data.Array.IO` but with
+  cleaned-up functional style. Compiled with `-O2`.
+  (Lots of run-time variance, which indicates opportunities
+  for speedups.)
+
 * Python[1]: Using the PyPy JIT compiler.
 
 * Python[2]: Using stock Python 3.
@@ -52,7 +58,8 @@ are as follows:
         Java:            0.080s
         JavaScript[1]:   0.10s
         JavaScript[2]:   0.11s
-        Haskell[1]:      0.47s
+        Haskell[3]:      0.4s
+        Haskell[1]:      0.45s
         Python[1]:       0.59s
         JavaScript[3]:   1.1s
         Haskell[2]:      1.4s

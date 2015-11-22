@@ -31,3 +31,8 @@
   cd haskell/functional
   cabal clean
   cabal build )
+
+( echo "haskell/bobw:" >&2
+  cd haskell/bobw
+  cabal clean
+  cabal build )
