@@ -18,10 +18,6 @@ import Data.Map ((!))
 cells :: [(Int, Int)]
 cells = [(r, c) | r <- [0..2], c <- [0..2]]
 
-
-check :: [a] -> (a -> Bool) -> Bool
-check xs f = or $ map f xs
-
 gameValue :: Int -> M.Map (Int, Int) Int -> Int
 gameValue onMove board
     | checkSide (-1) = -onMove
@@ -35,11 +31,11 @@ gameValue onMove board
           -- scan for opposite diagonal
           has3 [ (d, 2 - d) | d <- [0..2] ],
           -- scan for rows
-          check [0..2] (\r -> has3 [ (r, c) | c <- [0..2] ]),
+          any (\r -> has3 [ (r, c) | c <- [0..2] ]) [0..2],
           -- scan for columns
-          check [0..2] (\c -> has3 [ (r, c) | r <- [0..2] ]) ]
+          any (\c -> has3 [ (r, c) | r <- [0..2] ]) [0..2] ]
           where
-            has3 ps = and $ map (\p -> board ! p == side) ps
+            has3 ps = all (\p -> board ! p == side) ps
       checkBlanks =
           -- scan for blanks
-          check cells $ (\p -> board ! p == 0)
+          any (\p -> board ! p == 0) cells
