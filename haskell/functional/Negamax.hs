@@ -25,15 +25,16 @@ where
 
 import qualified Data.Map as M
 import Data.Map ((!))
+import Data.List (foldl')
 
 import GameValue
 
 negamax :: Int -> M.Map (Int, Int) Int -> Int
 negamax onMove board
-    | v0 == -2 = foldr updateValue (-1) cells
+    | v0 == -2 = foldl' updateValue (-1) cells
     | otherwise = v0
     where
-      updateValue pos v =
+      updateValue v pos =
           case board ! pos of
             0 ->
                 let vn = -(negamax (-onMove) (M.insert pos onMove board)) in
