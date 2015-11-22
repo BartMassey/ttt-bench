@@ -54,8 +54,8 @@ are as follows:
         JavaScript[2]:   0.11s
         Haskell[1]:      0.44s
         Python[1]:       0.59s
-        JavaScript[3]:   1.06s
-        Haskell[2]:      2.51s
+        JavaScript[3]:   1.1s
+        Haskell[2]:      1.3s
         Python[2]:       4.0s
         Nickle:          5.5s
         Matlab*:         15s
