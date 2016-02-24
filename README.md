@@ -13,20 +13,34 @@ settings I could manage.
 
 Some notes on some of the implementations:
 
-* Rust: Compiled with all the optimizations I could spot
-  turned on including optimization level 3 and link-time
-  stuff.
+* C[1]: Compiled with `clang -O3 -march=native` using Clang
+  3.8. This was measured with a timing loop, so the result
+  is relatively accurate.
 
-* C: Compiled with `-O2 -march=native`.
+* C[2]: Compiled with `gcc -O4 -march=native` using GCC
+  5.3.1. This was measured with a timing loop, so the result
+  is relatively accurate.
 
-* Java: Compiled with -O. Includes Java's large startup
-  overhead. Average over many runs with much variance.
+* Rust: Compiled with `rustc` 1.5.0 via `cargo` with
+  debugging turned off, `opt-level = 3` and `lto =
+  true`. This was measured with a timing loop, so the result
+  is relatively accurate.
 
-* JavaScript[1]: Using the d8 shell of the v8 interpreter.
+* Java: Compiled with Oracle `javac` 1.8.0 with `-O`. This
+  was measured with a timing loop, so the result is
+  relatively accurate and amortizes away startup costs.
 
-* JavaScript[2]: Using the js shell of SpiderMonkey.
+* JavaScript[1]: Using the d8 shell of the v8 interpreter,
+  version 3.14.5. This was measured with a timing loop, so
+  the result is relatively accurate.
 
-* JavaScript[3]: Using the Java-based rhino interpreter shell.
+* JavaScript[2]: Using the js shell of SpiderMonkey, version
+  C24.8.1. This was measured with a timing loop, so the
+  result is relatively accurate.
+
+* JavaScript[3]: Using the Java-based rhino interpreter
+  shell, version 1.7R4, with `-opt 9`. This was measured
+  with a timing loop, so the result is relatively accurate.
 
 * Haskell[1]: A relatively unoptimized imperative version
   using `Data.Array.IO` and sticking as closely as possible
@@ -53,32 +67,30 @@ Some notes on some of the implementations:
 Timings on my home machine (Intel i7-4770K CPU @ 3.50GHz)
 are as follows:
 
-        Rust:            0.017s
-        C:               0.022s
-        Java:            0.080s
+        C[1]:            0.010s
+        C[2]:            0.012s
+        Rust:            0.016s
+        Java:            0.021s
         JavaScript[1]:   0.10s
-        JavaScript[2]:   0.11s
+        JavaScript[2]:   0.10s
+        JavaScript[3]:   0.39s
         Haskell[3]:      0.4s
         Haskell[1]:      0.45s
         Python[1]:       0.59s
-        JavaScript[3]:   1.1s
         Haskell[2]:      1.3s
         Python[2]:       4.0s
         Nickle:          5.5s
         Matlab*:         15s
         Octave:          135s
 
-Yes, Octave is 6000x slower than C on this benchmark!
+Yes, Octave is more than 10000x slower than C on this
+benchmark!
 
 I was surprised to see the differences in performance
 between languages. Slow recursion might be a problem for
 this code, but most of the time is expected to be spent in
 gamevalue() checking for wins. As such, it's running the
 most generic little `for`-loops ever.
-
-The variance in these measurements can be substantial. I
-should run more runs, including warmup runs, and indicate
-variance.
 
 I split the program across several files, for complicated
 reasons. Thus this code is also a demo of separate source

@@ -21,4 +21,7 @@ board = [
   [0,  0,  0] ]
 */
 
-print(negamax(1, board))
+var sum_draws = negamax(1, board)
+for (var i = 0; i < 100; i++)
+    sum_draws += negamax(1, board)
+print(sum_draws)

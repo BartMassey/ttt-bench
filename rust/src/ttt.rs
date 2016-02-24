@@ -10,5 +10,9 @@ use ttt::negamax;
 
 pub fn main() {
     let mut board: [[i32;3];3] = [[0;3];3];
-    println!("{}\n", negamax::negamax(1, &mut board));
+    let mut sum_draws: i32 = negamax::negamax(1, &mut board);
+    for _ in 1..1000 {
+        sum_draws += negamax::negamax(1, &mut board);
+    }
+    println!("{}\n", sum_draws);
 }

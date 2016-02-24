@@ -3,7 +3,12 @@
 # Please see the file COPYING in the source
 # distribution of this software for license terms.
 
-CFLAGS = -std=c99 -O2 -march=native -Wall
+CC = gcc -O4
+# CC = clang -O3
+#LONGTIME = -DLONGTIME=1000
+
+
+CFLAGS = $(LONGTIME) -std=gnu99 -march=native -Wall
 
 OBJS = ttt.o negamax.o gamevalue.o
 

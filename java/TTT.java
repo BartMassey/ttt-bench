@@ -9,6 +9,8 @@
 
 class TTT {
 
+  static boolean timing_loop = true;
+
   static int board[][] = {
     {0, 0, 0},
     {0, 0, 0},
@@ -16,7 +18,11 @@ class TTT {
   };
 
   public static void main(String[] args) {
-    System.out.println(Negamax.negamax(1, board));
+    int sum_draws = Negamax.negamax(1, board);
+    if (timing_loop)
+        for (int i = 1; i < 1000; i++)
+            sum_draws += Negamax.negamax(1, board);
+    System.out.println(sum_draws);
   }
 
 }
