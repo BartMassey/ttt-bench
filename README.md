@@ -26,6 +26,9 @@ Some notes on some of the implementations:
   true`. This was measured with a timing loop, so the result
   is relatively accurate.
 
+  Tried using vectors instead of bounded lists, but the
+  result was about 38% slower. See the branch `rust-vector`.
+
 * Java: Compiled with Oracle `javac` 1.8.0 with `-O`. This
   was measured with a timing loop, so the result is
   relatively accurate and amortizes away startup costs.
