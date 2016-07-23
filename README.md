@@ -64,6 +64,15 @@ Some notes on some of the implementations:
 
 * Python[2]: Using stock Python 3.
 
+* Erlang: Because the start-up and cool-down time for this
+  language is so long, I ran a timing loop of 10 tries;
+  looks like about 1s total. Erlang takes a noticeable
+  amount of time to stop after printing the answer.
+
+  Because Erlang has no for loops and weird array stuff, the
+  code isn't entirely comparable to the other languages
+  benchmarked here.
+
 * Matlab*: Run on a different (much slower) machine,
   because I had access to Matlab there.
 
@@ -81,6 +90,7 @@ are as follows:
         Haskell[1]:      0.45s
         Python[1]:       0.59s
         Haskell[2]:      1.3s
+        Erlang:          2.3s
         Python[2]:       4.0s
         Nickle:          5.5s
         Matlab*:         15s
