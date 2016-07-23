@@ -7,13 +7,11 @@
 # Build BEAM and HiPE versions of Erlang TTT
 
 [ -d hipe ] || mkdir hipe
-make clean
-make ERLFLAGS="+native +o3"
+rm -rf *.beam
+erl -make
 mv *.beam hipe/
 
 [ -d beam ] || mkdir beam
-make clean
-make ERLFLAGS=""
-mv *.beam beam/
-
-make clean
+rm -rf *.beam
+erl -make +native +o3
+mv *.beam hipe/
