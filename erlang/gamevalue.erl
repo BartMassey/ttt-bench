@@ -79,6 +79,6 @@ gamevalue(OnMove, Board) ->
     case has_win(OnMove, Board) of
         true -> 1;
         false -> case has_win(-OnMove, Board) of true -> -1;
-        false -> case has_move(Board, 0, 0) of true -> 0;
-        false -> -2
+        false -> case has_move(Board, 0, 0) of true -> -2;
+        false -> 0
     end end end.
