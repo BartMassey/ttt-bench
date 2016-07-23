@@ -21,7 +21,16 @@ board = [
   [0,  0,  0] ]
 */
 
+var count
+/* http://stackoverflow.com/questions/2647867 */
+try {
+    count = +arguments[0]
+} catch(err) {
+    /* SpiderMonkey is non-standard here */
+    count = +scriptArgs[1]
+}
+print(count)
 var sum_draws = negamax(1, board)
-for (var i = 0; i < 100; i++)
+for (var i = 0; i < count; i++)
     sum_draws += negamax(1, board)
 print(sum_draws)
