@@ -67,7 +67,8 @@ Some notes on some of the implementations:
 * Erlang: Because the start-up and cool-down time for this
   language is so long, I ran a timing loop of 10 tries;
   looks like about 1s total. Erlang takes a noticeable
-  amount of time to stop after printing the answer.
+  amount of time to stop after printing the answer. Compiled
+  to native code via HiPE.
 
   Because Erlang has no for loops and weird array stuff, the
   code isn't entirely comparable to the other languages
