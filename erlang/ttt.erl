@@ -5,7 +5,7 @@
 % distribution of this software for license terms.
 
 -module(ttt).
--on_load(main/0).
+-export([start/0]).
 
-main() ->
+start() ->
     negamax:negamax(-1, board:new()).
