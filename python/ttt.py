@@ -5,10 +5,16 @@
 # distribution of this software for license terms.
 
 from negamax import *
+from sys import argv
 
 board = [
   [0,  0,  0],
   [0,  0,  0],
   [0,  0,  0] ]
 
-print(negamax(1, board))
+reps = 1
+if len(argv) > 1:
+    reps = int(argv[1])
+for _ in range(reps):
+    n = negamax(1, board)
+print(n)
