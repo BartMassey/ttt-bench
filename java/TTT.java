@@ -18,10 +18,12 @@ class TTT {
   };
 
   public static void main(String[] args) {
-    int sum_draws = Negamax.negamax(1, board);
-    if (timing_loop)
-        for (int i = 1; i < 10; i++)
-            sum_draws += Negamax.negamax(1, board);
+    int reps = 1;
+    if (args.length > 0)
+      reps = Integer.parseInt(args[0]);
+    int sum_draws = 0;
+    for (int i = 0; i < reps; i++)
+      sum_draws += Negamax.negamax(1, board);
     System.out.println(sum_draws);
   }
 
