@@ -5,9 +5,25 @@
 # for license details.
 
 awk '{
-  if (NF == 3 && ($2 ".0") + 0 >= 1) {
-      per_iter = sprintf("%.2g", $3 / (($2 ".0") + 0))
-      times[$1] = sprintf("%f", per_iter + 0)
+  if (NF == 3 && $2 + 0 >= 1) {
+      if ($2 + 0 == 1 && $3 + 0.0 > 100) {
+          times[$1] = $3 + 0.0
+      } else {
+          per_iter = sprintf("%4.2g", ($3 + 0.0) / ($2 + 0))
+          signif = sprintf("%f", per_iter + 0.0)
+          report = ""
+          for (i = 1; i <= length(signif) - 1; i++) {
+              c = substr(signif, i, 1)
+              if (c != "0" && c != ".")
+                  break
+              report = report c
+          }
+          rest = substr(signif, i, 3)
+          if (match(rest, "\\.") == 0 || substr(rest, 3) == ".")
+              rest = substr(rest, 1, 2)
+          report = report rest
+          times[$1] = report
+      }
   } else if (NF >= 1) {
       times[$1] = "<?>"
   }

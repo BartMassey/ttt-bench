@@ -4,76 +4,78 @@
 # License". Please see the file COPYING in this distribution
 # for license details.
 
-# Run all the implementations, reporting timing.
+# Build and run all the implementations, reporting timing.
 
-# Some implementations currently use a non-standard
-# version of the "time" command to get extra precision.
-# It is currently being upstreamed.
+# I was using a non-standard version of the "time" command I
+# rewrote to get extra precision.  I plan to upstream
+# it. Now that I've ironed out timing loop lengths, it
+# should actually be adequate to use standard time in the
+# meantime.
 
-( ( cd rust
-    echo -n "Rust: "
-    etime -f '%3e' target/debug/ttt 2>&1 >/dev/null )
+#TIME="etime -f %3e"
+TIME="time -f %e"
 
-  ( cd c
-    echo -n "C: "
-    etime -f '%3e' ./ttt 2>&1 >/dev/null )
+( cd rust
+  echo -n "Rust: 500 "
+  $TIME target/release/ttt 500 2>&1 >/dev/null )
 
-  ( cd java
-    echo -n "Java: "
-    etime -f '%3e' java TTT 2>&1 >/dev/null )
+( cd c
+  echo -n "C[clang]: 500 "
+  $TIME ./ttt-clang 500 2>&1 >/dev/null )
 
-  ( cd javascript
-    echo -n "JavaScript[1]: "
-    time -f '%e' sh run.sh d8 2>&1 >/dev/null
-    echo -n "JavaScript[2]: "
-    time -f '%e' sh run.sh js 2>&1 >/dev/null
-    echo -n "JavaScript[3]: "
-    time -f '%e' sh run.sh rhino 2>&1 >/dev/null )
+( cd c
+  echo -n "C[gcc]: 500 "
+  $TIME ./ttt-gcc 500 2>&1 >/dev/null )
 
-  ( cd haskell/imperative
-    echo -n "Haskell[1]: "
-    time -f '%e' dist/build/ttt/ttt 2>&1 >/dev/null )
+( cd javascript
+  echo -n "JavaScript[smjs]: 50 "
+  $TIME sh run.sh smjs 50 2>&1 >/dev/null
+  echo -n "JavaScript[d8]: 50 "
+  $TIME sh run.sh d8 50 2>&1 >/dev/null
+  echo -n "JavaScript[rhino]: 5 "
+  $TIME sh run.sh rhino 5 2>&1 >/dev/null )
 
-  ( cd haskell/functional
-    echo -n "Haskell[2]: "
-    time -f '%e' dist/build/ttt/ttt 2>&1 >/dev/null )
+( cd java
+  echo -n "Java[100]: 100 "
+  $TIME java TTT 100 2>&1 >/dev/null
+  echo -n "Java[10]: 10 "
+  $TIME java TTT 10 2>&1 >/dev/null )
 
-  ( cd haskell/bobw
-    echo -n "Haskell[3]: "
-    time -f '%e' dist/build/ttt/ttt 2>&1 >/dev/null )
+( cd haskell/imperative
+  echo -n "Haskell[imperative]: 10 "
+  $TIME dist/build/ttt/ttt 10 2>&1 >/dev/null )
 
-  ( cd python
-    echo -n "Python[1]: "
-    etime -f '%2e' pypy ttt.py 2>&1 >/dev/null
-    echo -n "Python[2]: "
-    etime -f '%1e' python3 ttt.py 2>&1 >/dev/null )
+( cd haskell/functional
+  echo -n "Haskell[functional]: 10 "
+  $TIME dist/build/ttt/ttt 10 2>&1 >/dev/null )
 
-  ( cd nickle
-    echo -n "Nickle: "
-    etime -f '%1e' /usr/bin/nickle ttt.5c 2>&1 >/dev/null )
+( cd haskell/bobw
+  echo -n "Haskell[bobw]: 10 "
+  $TIME dist/build/ttt/ttt 10 2>&1 >/dev/null )
 
-  ( cd octave
-    echo -n "Octave: "
-    etime -f '%0e' octave ttt.m 2>&1 >/dev/null )
+( cd erlang/bytecode
+  echo -n "Erlang[beam]: 10 "
+  $TIME sh ../ttt.sh 10 2>&1 >/dev/null )
 
-  # We ran Matlab elsewhere
-  echo "Matlab*: 15" ) |
+( cd erlang/hipe
+  echo -n "Erlang[hipe]: 5 "
+  $TIME sh ../ttt.sh 5 2>&1 >/dev/null )
 
-awk '{
-  times[$1] = $2
-}
-END {
-  l = 0
-  for (k in times)
-    if (length(k) > l)
-      l = length(k)
-  l += 3
-  for (k in times) {
-    printf("        %s", k)
-    for (i = 1; i <= l - length(k); i++)
-      printf(" " )
-    printf("%ss\n", times[k]);
-  }
-}' |
+( cd python
+  echo -n "Python[pypy]: 5 "
+  $TIME pypy ttt.py 5 2>&1 >/dev/null
+  echo -n "Python[python3]: 1 "
+  $TIME python3 ttt.py 1 2>&1 >/dev/null )
 
-sort -k 2 -n
+( cd nickle
+  echo -n "Nickle: 1 "
+  $TIME /usr/bin/nickle ttt.5c 2>&1 >/dev/null )
+
+# We ran Matlab elsewhere
+echo "Matlab*: 1 15"
+
+# Octave takes too damn long
+#( cd octave
+#  echo -n "Octave: 1 "
+#  etime -f '%0e' octave ttt.m 2>&1 >/dev/null )
+echo "Octave: 1 135"
