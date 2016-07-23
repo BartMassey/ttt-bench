@@ -8,28 +8,18 @@
 -export([new/0, get/3, set/4]).
 -compile([inline]).
 
-% Initialize a row of the board.
-init_row(C, Row) when C > 2 ->
-    Row;
-
-init_row(C, Row) ->
-    Row1 = array:set(C, 0, Row),
-    init_row(C + 1, Row1).
-
-% Create and initialize the rows of the board.
-build_board(R, Board) when R > 2 ->
+init_rows(3, Board) ->
     Board;
 
-build_board(R, Board) ->
-    Row = array:new(3),
-    Row1 = init_row(0, Row),
-    Board1 = array:set(R, Row1, Board),
-    build_board(R + 1, Board1).
+init_rows(R, Board) ->
+    Row = array:new([{fixed, true}, {size, 3}, {default, 0}]),
+    Board1 = array:set(R, Row, Board),
+    init_rows(R + 1, Board1).
 
 new() ->
-    Board = array:new(3),
-    build_board(0, Board).
-    
+    Board = array:new([{fixed, true}, {size, 3}]),
+    init_rows(0, Board).
+
 get(R, C, Board) ->
     array:get(C, array:get(R, Board)).
 

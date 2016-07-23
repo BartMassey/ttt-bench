@@ -114,13 +114,16 @@ most generic little `for`-loops ever.
   answer; the timing loop is long enough to mostly amortize
   this away.
 
-  Because Erlang has no for loops and weird array stuff, the
-  code isn't entirely comparable to the other languages
-  benchmarked here.
+  Of necessity, the for loops used in the other benchmarks
+  have been replaced with recursion here. I have used an
+  array-of-arrays as the board type for equivalence; another
+  branch of the code has a flattened board and goes about
+  20% faster.
 
 * Erlang[hipe]: Compiled to native code via HiPE using
   `erlc` 18.3.4.1.  This runs substantially slower than BEAM
-  bytecode.
+  bytecode, although the flattened-board version is almost
+  as fast as the flattened-board BEAM code.
 
 * Nickle: Run with version 2.77.
 
