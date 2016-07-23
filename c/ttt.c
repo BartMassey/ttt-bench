@@ -8,23 +8,21 @@
 /* Perfect Tic-Tac-Toe player in Nickle */
 
 #include <stdio.h>
-#ifdef LONGTIME
-#include <stdint.h>
-#endif
+#include <stdlib.h>
 
 extern int negamax(int, int[3][3]);
 
 int board[3][3];
 
-int main() {
-    printf("%d\n", negamax(1, board));
-#ifdef LONGTIME
+int main(int argc, char **argv) {
+    int reps = 1;
+    if (argc > 0)
+        reps = atoi(argv[1]);
     volatile int j;
-    for (int i = 0; i < LONGTIME; i++) {
+    for (int i = 0; i < reps; i++) {
         asm("cpuid" ::: "rax", "rbx", "rcx", "rdx");
         j = negamax(1, board);
     }
     printf("%d\n", j);
-#endif
     return 0;
 }
