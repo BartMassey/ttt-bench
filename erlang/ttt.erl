@@ -8,4 +8,5 @@
 -export([start/0]).
 
 start() ->
-    negamax:negamax(-1, board:new()).
+    GameValue = negamax:negamax(-1, board:new()),
+    io:fwrite("~B~n", [GameValue]).
