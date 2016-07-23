@@ -4,16 +4,16 @@
 # Please see the file COPYING in the source
 # distribution of this software for license terms.
 
-# Build bytecode and HiPE versions of Erlang TTT
+# Build BEAM and HiPE versions of Erlang TTT
 
 [ -d hipe ] || mkdir hipe
 make clean
 make ERLFLAGS="+native +o3"
 mv *.beam hipe/
 
-[ -d bytecode ] || mkdir bytecode
+[ -d beam ] || mkdir beam
 make clean
 make ERLFLAGS=""
-mv *.beam bytecode/
+mv *.beam beam/
 
 make clean
