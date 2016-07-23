@@ -14,4 +14,4 @@ ttt.depends: ttt.beam negamax.beam gamevalue.beam board.beam
 	@touch ttt.depends
 
 clean:
-	-rm -f *.beam
+	-rm -f *.beam erl_crash.dump
