@@ -8,7 +8,7 @@
 
 [ -d hipe ] || mkdir hipe
 make clean
-make ERLFLAGS="+native"
+make ERLFLAGS="+native +o3"
 mv *.beam hipe/
 
 [ -d bytecode ] || mkdir bytecode
