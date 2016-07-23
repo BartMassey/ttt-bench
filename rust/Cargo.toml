@@ -11,8 +11,9 @@ path = "src/lib.rs"
 name = "ttt"
 path = "src/ttt.rs"
 
-[profile.dev]
+[profile.release]
 opt-level = 3
 debug = false
 lto = true
 debug-assertions = false
+codegen-units = 1
