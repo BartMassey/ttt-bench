@@ -6,6 +6,7 @@
 
 -module(gamevalue).
 -export([gamevalue/2]).
+-compile([inline]).
 
 % Scan for diagonal.
 has_diagonal(_, _, D) when D > 2 -> true;

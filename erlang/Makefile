@@ -5,7 +5,8 @@
 
 # Makefile for Erlang TTT
 
-ERLFLAGS = +native
+# ERLFLAGS = +native
+ERLFLAGS = oops
 
 .SUFFIXES: .erl .beam
 

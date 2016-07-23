@@ -6,6 +6,7 @@
 
 -module(board).
 -export([new/0, get/3, set/4]).
+-compile([inline]).
 
 % Initialize a row of the board.
 init_row(C, Row) when C > 2 ->

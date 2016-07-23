@@ -19,6 +19,7 @@
 
 -module(negamax).
 -export([negamax/2]).
+-compile([inline]).
 
 best_child(_, _, R, _) when R > 2 ->
     -2;
