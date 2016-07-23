@@ -5,10 +5,12 @@
 
 # Makefile for Erlang TTT
 
+ERLFLAGS = +native
+
 .SUFFIXES: .erl .beam
 
 .erl.beam:
-	erlc +native $*.erl
+	erlc $(ERLFLAGS) $*.erl
 
 ttt.depends: ttt.beam negamax.beam gamevalue.beam board.beam
 	@touch ttt.depends
