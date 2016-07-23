@@ -53,7 +53,7 @@ TIME="time -f %e"
   echo -n "Haskell[bobw]: 10 "
   $TIME dist/build/ttt/ttt 10 2>&1 >/dev/null )
 
-( cd erlang/bytecode
+( cd erlang/beam
   echo -n "Erlang[beam]: 10 "
   $TIME sh ../ttt.sh 10 2>&1 >/dev/null )
 
