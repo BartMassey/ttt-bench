@@ -20,7 +20,7 @@ class TTT {
   public static void main(String[] args) {
     int sum_draws = Negamax.negamax(1, board);
     if (timing_loop)
-        for (int i = 1; i < 1000; i++)
+        for (int i = 1; i < 10; i++)
             sum_draws += Negamax.negamax(1, board);
     System.out.println(sum_draws);
   }
