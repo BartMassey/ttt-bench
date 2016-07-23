@@ -3,12 +3,12 @@
 # Please see the file COPYING in the source
 # distribution of this software for license terms.
 
-CC = gcc -O4
+# CC = gcc -O4
 # CC = clang -O3
-#LONGTIME = -DLONGTIME=1000
+CC = /bin/false
 
 
-CFLAGS = $(LONGTIME) -std=gnu99 -march=native -Wall
+CFLAGS = -std=gnu99 -march=native -Wall
 
 OBJS = ttt.o negamax.o gamevalue.o
 
@@ -16,4 +16,4 @@ ttt: $(OBJS)
 	$(CC) $(CFLAGS) -o ttt $(OBJS)
 
 clean:
-	-rm -f $(OBJS) ttt
+	-rm -f $(OBJS) ttt ttt-clang ttt-gcc
