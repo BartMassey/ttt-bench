@@ -137,16 +137,20 @@ languages being measured. They are all available from stock
 Debian. After that, you have a 3-step process:
 
 * First compile what needs compiling with
+
         sh build.sh
 
 * When you've got everything compiled, actually
   run the benchmarks with
+
         sh get-times.sh | tee times.txt
+
   The `tee` isn't really necessary, but I like to
   see that things are running.
 
 * To get per-iteration times in Markdown suitable for
   pasting into the README, go with
+
         sh format-times.sh <times.txt >times.md
 
 I could easily have built a shell script for this, but I've
