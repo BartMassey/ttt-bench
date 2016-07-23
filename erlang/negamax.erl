@@ -30,9 +30,10 @@ best_child(OnMove, Board, R, C) when C > 2 ->
 best_child(OnMove, Board, R, C) ->
     case board:get(R, C, Board) of
         0 -> 
-            MoveBoard = board:set(R, C, OnMove, Board),
-            NV = -negamax(-OnMove, MoveBoard),
-            MV = best_child(OnMove, Board, R, C + 1),
+            Board1 = board:set(R, C, OnMove, Board),
+            NV = -negamax(-OnMove, Board1),
+            Board2 = board:set(R, C, 0, Board),
+            MV = best_child(OnMove, Board2, R, C + 1),
             max(NV, MV);
         _ -> best_child(OnMove, Board, R, C + 1)
     end.    
