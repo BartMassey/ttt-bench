@@ -67,7 +67,7 @@ has_move(Board, R, C) when C > 2 ->
     has_move(Board, R + 1, 0);
 
 has_move(Board, R, C) ->
-    board:get(R, C, Board) /= 0 andalso
+    board:get(R, C, Board) == 0 orelse
     has_move(Board, R, C + 1).
 
 % Returns the value of the game to the
