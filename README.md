@@ -38,8 +38,8 @@ Per-iteration timings on my home machine (Intel i7-4770K CPU
         Python[pypy]:          0.42s
         Haskell[functional]:   0.45s
         JavaScript[rhino]:     0.75s
-        Erlang[beam]:          1.5s
-        Erlang[hipe]:          2.5s
+        Erlang[beam]:          1.3s
+        Erlang[hipe]:          1.6s
         Python[python3]:       4.4s
         Nickle:                6.1s
         Matlab*:               15s
@@ -121,7 +121,7 @@ most generic little `for`-loops ever.
   20% faster.
 
 * Erlang[hipe]: Compiled to native code via HiPE using
-  `erlc` 18.3.4.1.  This runs substantially slower than BEAM
+  `erlc` 18.3.4.1.  This runs some slower than BEAM
   bytecode, although the flattened-board version is almost
   as fast as the flattened-board BEAM code.
 
