@@ -29,7 +29,7 @@ has_row(OnMove, Board, R, C) ->
     has_row(OnMove, Board, R, C + 1).
 
 % Scan for rows.
-has_some_row(_, _, R) when R > 3 ->
+has_some_row(_, _, R) when R > 2 ->
     false;
 
 has_some_row(OnMove, Board, R) ->
@@ -44,7 +44,7 @@ has_col(OnMove, Board, R, C) ->
     has_col(OnMove, Board, R + 1, C).
 
 % Scan for columns.
-has_some_col(_, _, C) when C > 3 ->
+has_some_col(_, _, C) when C > 2 ->
     false;
 
 has_some_col(OnMove, Board, C) ->
@@ -53,7 +53,7 @@ has_some_col(OnMove, Board, C) ->
 
 % Succeeds if there is a win on the board for
 % the side on move.
-has_win(Board, OnMove) ->
+has_win(OnMove, Board) ->
     has_diagonal(OnMove, Board, 0) orelse
     has_opposite_diagonal(OnMove, Board, 0) orelse
     has_some_row(OnMove, Board, 0) orelse
