@@ -8,17 +8,10 @@
 -export([new/0, get/3, set/4]).
 -compile([inline]).
 
-init_rows(3, Board) ->
-    Board;
-
-init_rows(R, Board) ->
-    Row = array:new([{fixed, true}, {size, 3}, {default, 0}]),
-    Board1 = array:set(R, Row, Board),
-    init_rows(R + 1, Board1).
-
 new() ->
-    Board = array:new([{fixed, true}, {size, 3}]),
-    init_rows(0, Board).
+    array:new([{fixed, true},
+               {size, 3}, {default,
+                  array:new([{fixed, true}, {size, 3}, {default, 0}]) }]).
 
 get(R, C, Board) ->
     array:get(C, array:get(R, Board)).
