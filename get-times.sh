@@ -15,6 +15,10 @@
 #TIME="etime -f %3e"
 TIME="time -f %e"
 
+( cd php
+  echo -n "PHP: 15 "
+  $TIME php ttt.php 15 2>&1 >/dev/null )
+
 ( cd rust
   echo -n "Rust: 500 "
   $TIME target/release/ttt 500 2>&1 >/dev/null )
