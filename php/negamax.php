@@ -24,7 +24,7 @@
 
 include "gamevalue.php";
 
-function negamax($onmove, $board) {
+function negamax($onmove, &$board) {
     $v = gamevalue($onmove, $board);
     if ($v != -2) {
         /* game is over */
