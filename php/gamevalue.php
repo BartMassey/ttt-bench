@@ -13,7 +13,7 @@
   side on move if the game is over, or
   -2 if the game is still in progress.
 */
-function gamevalue($onmove, $board) {
+function gamevalue($onmove, &$board) {
     $v;
     /* first scan for wins */
     $side = -1;
