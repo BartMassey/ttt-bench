@@ -38,6 +38,7 @@ Per-iteration timings on my home machine (Intel i7-4770K CPU
         Haskell[imperative]:   0.37s
         Python[pypy]:          0.42s
         Haskell[functional]:   0.45s
+        PHP:                   0.58s
         JavaScript[rhino]:     0.75s
         Erlang[beam]:          1.3s
         Erlang[hipe]:          1.6s
@@ -101,6 +102,8 @@ most generic little `for`-loops ever.
 * Haskell[bobw]: A "best of both worlds" version of the Haskell
   code using `Data.Array.IO` but with cleaned-up functional
   style. Compiled with GHC 7.10.3 with `-O2`.
+
+* PHP: Contributed by Matthew Slocum. Run with PHP 5.6.22.
 
 * Python[pypy]: Using the PyPy JIT compiler version 5.1.2 with
   GCC 5.3.1.
