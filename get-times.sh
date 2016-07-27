@@ -16,8 +16,8 @@
 TIME="time -f %e"
 
 ( cd php
-  echo -n "PHP: 15 "
-  $TIME php ttt.php 15 2>&1 >/dev/null )
+  echo -n "PHP: 10 "
+  $TIME php ttt.php 10 2>&1 >/dev/null )
 
 ( cd rust
   echo -n "Rust: 500 "
