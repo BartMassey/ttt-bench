@@ -5,8 +5,9 @@ This is as direct as possible a translation of the same
 pseudocode into a variety of different imperative languages.
 The code is a Tic-Tac-Toe solver: i.e., a search that proves
 that Tic-Tac-Toe is a draw. The search is complete and
-completely unoptimized, so it searches about 550K positions
-before proving the draw.
+completely unpruned, so it searches 549946 positions before
+proving the draw, calling the board evaluator from scratch
+at each position.
 
 I split the program across several files, in order to:
 
