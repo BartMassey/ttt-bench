@@ -20,7 +20,10 @@
 
 use gamevalue;
 
+pub static mut node_count: u64 = 0;
+
 pub fn negamax(onmove: i32, board: &mut[[i32;3];3]) -> i32 {
+    unsafe { node_count += 1 };
     let mut v:i32 = gamevalue::gamevalue(onmove, board);
     if v != -2 {
         /* game is over */

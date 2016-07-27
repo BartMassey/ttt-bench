@@ -17,4 +17,5 @@ pub fn main() {
         sum_draws += negamax::negamax(1, &mut board);
     }
     println!("{}", sum_draws);
+    println!("node count: {}", unsafe { negamax::node_count });
 }
