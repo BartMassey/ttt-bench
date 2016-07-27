@@ -10,9 +10,12 @@
 
 include "negamax.php";
 
-$board = array(array(0,0,0),
-               array(0,0,0),
-               array(0,0,0));
+$board = array();
+for($i=0; $i<3; $i++) {
+    for($j=0; $j<3; $j++) {
+        $board[$i][$j]=0;
+    }
+}
 
 $reps = 1;
 if (isset($argv[1])) {
