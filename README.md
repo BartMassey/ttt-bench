@@ -78,16 +78,13 @@ most generic little `for`-loops ever.
   comparison purposes.
 
 * JavaScript[smjs]: Using the js shell of SpiderMonkey, version
-  C24.8.1. This was measured with a timing loop, so the
-  result is relatively accurate.
+  C24.8.1.
 
 * JavaScript[d8]: Using the d8 shell of the v8 interpreter,
-  version 3.14.5. This was measured with a timing loop, so
-  the result is relatively accurate.
+  version 3.14.5.
 
 * JavaScript[rhino]: Using the Java-based rhino interpreter
-  shell, version 1.7R4, with `-opt 9`. This was measured
-  with a timing loop, so the result is relatively accurate.
+  shell, version 1.7R4, with `-opt 9`.
 
 * Haskell[imperative]: A relatively unoptimized imperative version
   using `Data.Array.IO` and sticking as closely as possible
