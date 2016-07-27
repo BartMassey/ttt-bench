@@ -22,6 +22,6 @@ $j;
 for($i=0; $i<$reps; $i++) {
     $j = negamax(1, $board);
 }
-echo $j,'\n';
+echo $j,"\n";
 
 ?>
