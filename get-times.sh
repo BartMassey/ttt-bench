@@ -45,6 +45,10 @@ TIME="time -f %e"
   echo -n "Java[10]: 10 "
   $TIME java TTT 10 2>&1 >/dev/null )
 
+( cd go
+  echo -n "Go: 20 "
+  $TIME ./ttt 20 2>&1 >/dev/null )
+
 ( cd haskell/imperative
   echo -n "Haskell[imperative]: 10 "
   $TIME dist/build/ttt/ttt 10 2>&1 >/dev/null )
