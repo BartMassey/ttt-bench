@@ -46,8 +46,8 @@ TIME="time -f %e"
   $TIME java TTT 10 2>&1 >/dev/null )
 
 ( cd go
-  echo -n "Go: 20 "
-  $TIME ./ttt 20 2>&1 >/dev/null )
+  echo -n "Go: 100 "
+  $TIME ./ttt 100 2>&1 >/dev/null )
 
 ( cd haskell/imperative
   echo -n "Haskell[imperative]: 10 "

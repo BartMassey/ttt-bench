@@ -25,26 +25,26 @@ at least a few seconds to amortize overhead.
 ## Results
 
 Per-iteration timings on my home machine (Intel i7-4770K CPU
-@ 3.50GHz) are as follows:
+@ 3.50GHz) from a run 2017-11-28 are as follows:
 
-        C[clang]:              0.010s
-        C[gcc]:                0.013s
-        Rust:                  0.016s
+        C[clang]:              0.0093s
+        Rust:                  0.011s
+        C[gcc]:                0.014s
         Java[100]:             0.022s
-        Java[10]:              0.028s
+        Java[10]:              0.027s
         Go:                    0.057s
-        JavaScript[d8]:        0.10s
-        JavaScript[smjs]:      0.11s
-        Haskell[bobw]:         0.31s
-        Haskell[imperative]:   0.37s
-        Python[pypy]:          0.42s
-        Haskell[functional]:   0.45s
+        JavaScript[d8]:        0.094s
+        JavaScript[smjs]:      0.095s
+        Haskell[bobw]:         0.24s
+        Haskell[imperative]:   0.35s
+        Python[pypy]:          0.38s
         PHP:                   0.58s
-        JavaScript[rhino]:     0.75s
-        Erlang[beam]:          1.3s
-        Erlang[hipe]:          1.6s
-        Python[python3]:       4.4s
-        Nickle:                6.1s
+        JavaScript[rhino]:     0.68s
+        Haskell[functional]:   0.78s
+        Erlang[beam]:          1.1s
+        Erlang[hipe]:          1.5s
+        Python[python3]:       4.3s
+        Nickle:                4.6s
         Matlab*:               15s
         Octave:                135s
 
@@ -60,12 +60,12 @@ most generic little `for`-loops ever.
 ### Notes
 
 * C[clang]: Compiled with `clang -O3 -march=native` using Clang
-  3.8.
+  4.0.1.
 
 * C[gcc]: Compiled with `gcc -O4 -march=native` using GCC
-  5.4.
+  7.2.0.
 
-* Rust: Compiled with `rustc` 1.12.0 via `cargo` with the
+* Rust: Compiled with `rustc` 1.21.0 via `cargo` with the
   best optimizations I could find (see the source). Tried
   using vectors instead of arrays, but the result was about
   38% slower. See the branch `rust-vector`.
@@ -87,31 +87,31 @@ most generic little `for`-loops ever.
   version 3.14.5.
 
 * JavaScript[rhino]: Using the Java-based rhino interpreter
-  shell, version 1.7R4, with `-opt 9`.
+  shell, version 1.7.7.1, with `-opt 9`.
 
 * Haskell[imperative]: A relatively unoptimized imperative version
   using `Data.Array.IO` and sticking as closely as possible
-  to the pseudocode. Compiled with GHC 7.10.3 with
+  to the pseudocode. Compiled with GHC 8.0.2 with
   `-O2`. Ugly, and required some ugly plumbing.
 
 * Haskell[functional]: A reasonably natural pure-functional version
   of the Haskell code using `Data.Map` but following the
   general outline of the pseudocode. Compiled with GHC
-  7.10.3 with `-O2`.
+  8.0.2 with `-O2`.
 
 * Haskell[bobw]: A "best of both worlds" version of the Haskell
   code using `Data.Array.IO` but with cleaned-up functional
-  style. Compiled with GHC 7.10.3 with `-O2`.
+  style. Compiled with GHC 8.0.2 with `-O2`.
 
-* PHP: Contributed by Matthew Slocum. Run with PHP 5.6.22.
+* PHP: Contributed by Matthew Slocum. Run with PHP 5.6.30.
 
-* Python[pypy]: Using the PyPy JIT compiler version 5.1.2 with
-  GCC 5.3.1.
+* Python[pypy]: Using the PyPy JIT compiler version 5.9.0 with
+  GCC 7.2.0.
 
-* Python[python3]: Using stock Python3 version 3.5.1+.
+* Python[python3]: Using stock Python3 version 3.6.3.
 
 * Erlang[beam]: Compiled to BEAM bytecode using `erlc`
-  18.3.4.1.
+  20.1.7.
 
   Erlang has about 1s of startup overhead, including a
   noticeable amount of time to stop after printing the
@@ -125,14 +125,16 @@ most generic little `for`-loops ever.
   20% faster.
 
 * Erlang[hipe]: Compiled to native code via HiPE using
-  `erlc` 18.3.4.1.  This runs some slower than BEAM
-  bytecode, although the flattened-board version is almost
-  as fast as the flattened-board BEAM code.
+  `erlc` 20.1.7.  This runs some slower than BEAM bytecode,
+  although the flattened-board version is almost as fast as
+  the flattened-board BEAM code.
 
 * Nickle: Run with version 2.77.
 
-* Matlab*: Run on a different (much slower) machine,
-  because I had access to Matlab there.
+* Matlab*: Run a long time ago on a different (much slower)
+  machine, because I had access to Matlab there.
+
+* Octave: Run a long time ago with some ancient version.
 
 ## Replication
 
