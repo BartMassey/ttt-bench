@@ -15,6 +15,10 @@
 #TIME="etime -f %3e"
 TIME="time -f %e"
 
+# Note: "2>&1 >/dev/null" sends the time output that was on
+# stderr to stdout and throws away the result "0" that the
+# program prints on stdout.
+
 ( cd php
   echo -n "PHP: 10 "
   $TIME php ttt.php 10 2>&1 >/dev/null )
