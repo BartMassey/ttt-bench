@@ -21,7 +21,7 @@ import "gamevalue"
 //           v <- v'
 //    return v
 
-func Negamax(onmove int, board [3][3]int) int {
+func Negamax(onmove int, board *[3][3]int) int {
 	v := gamevalue.GameValue(onmove, board)
 	if v != -2 {
 		// game is over
@@ -36,8 +36,8 @@ func Negamax(onmove int, board [3][3]int) int {
 				if v0 > v {
 					v = v0
 				}
+				board[r][c] = 0
 			}
-			board[r][c] = 0
 		}
 	}
 	return v

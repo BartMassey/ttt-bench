@@ -10,7 +10,7 @@
 
 package gamevalue
 
-func GameValue(onmove int, board [3][3]int) int {
+func GameValue(onmove int, board *[3][3]int) int {
 	var v int
 	// first scan for wins
 	var side = -1

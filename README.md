@@ -32,6 +32,7 @@ Per-iteration timings on my home machine (Intel i7-4770K CPU
         Rust:                  0.016s
         Java[100]:             0.022s
         Java[10]:              0.028s
+        Go:                    0.057s
         JavaScript[d8]:        0.10s
         JavaScript[smjs]:      0.11s
         Haskell[bobw]:         0.31s
@@ -76,6 +77,8 @@ most generic little `for`-loops ever.
 
 * Java[10]: Run with a 10-iteration timing loop for
   comparison purposes.
+
+* Go: Compiled with Golang 1.9 via "go build".
 
 * JavaScript[smjs]: Using the js shell of SpiderMonkey, version
   C24.8.1.

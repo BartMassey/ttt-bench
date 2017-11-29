@@ -17,8 +17,15 @@
 
 ( echo "java:" >&2
   cd java
-  rm *.class
+  rm -f *.class
   javac -O *.java )
+
+( echo "go:" >&2
+  cd go
+  GOPATH="`pwd`"
+  export GOPATH
+  go clean
+  go build src/ttt.go )
 
 ( echo "haskell/imperative:" >&2
   cd haskell/imperative
