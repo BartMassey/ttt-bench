@@ -27,7 +27,7 @@ at least a few seconds to amortize overhead.
 Per-iteration timings on my home machine (Intel i7-4770K CPU
 @ 3.50GHz) from a run 2018-05-14 are as follows:
 
-        Rust:                  0.0094s
+        Rust:                  0.0091s
         C[clang]:              0.010s
         C[gcc]:                0.015s
         Java[100]:             0.023s
