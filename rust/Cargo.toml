@@ -11,6 +11,9 @@ path = "src/lib.rs"
 name = "ttt"
 path = "src/ttt.rs"
 
+[build.rustflags]
+target-cpu = "native"
+
 [profile.release]
 opt-level = 3
 debug = false
