@@ -8,7 +8,9 @@
 
 ( echo "rust:" >&2
   cd rust
+  cargo update
   cargo clean
+  rm -f Cargo.lock
   cargo build --release )
 
 ( echo "c:" >&2
@@ -29,6 +31,7 @@
 
 ( echo "haskell/imperative:" >&2
   cd haskell/imperative
+  cabal update
   cabal clean
   cabal configure
   cabal build )
@@ -36,15 +39,22 @@
 
 ( echo "haskell/functional:" >&2
   cd haskell/functional
+  cabal update
   cabal clean
   cabal configure
   cabal build )
 
 ( echo "haskell/bobw:" >&2
   cd haskell/bobw
+  cabal update
   cabal clean
   cabal configure
   cabal build )
+
+( echo "python:" >&2
+  cd python
+  nuitka --recurse-all ttt.py &&
+  mv ttt.exe ttt )
 
 ( echo "erlang:" >&2
   cd erlang
