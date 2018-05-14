@@ -76,6 +76,8 @@ TIME="time -f %e"
 ( cd python
   echo -n "Python[pypy]: 5 "
   $TIME pypy ttt.py 5 2>&1 >/dev/null
+  echo -n "Python[nuitka]: 2 "
+  $TIME ./ttt 2 2>&1 >/dev/null
   echo -n "Python[python3]: 1 "
   $TIME python3 ttt.py 1 2>&1 >/dev/null )
 
@@ -90,4 +92,4 @@ echo "Matlab*: 1 15"
 #( cd octave
 #  echo -n "Octave: 1 "
 #  etime -f '%0e' octave ttt.m 2>&1 >/dev/null )
-echo "Octave: 1 135"
+echo "Octave*: 1 110"
