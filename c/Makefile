@@ -17,4 +17,4 @@ ttt: $(OBJS)
 	$(CC) $(CFLAGS) -o ttt $(OBJS)
 
 clean:
-	-rm -f $(OBJS) ttt ttt-clang ttt-gcc
+	-rm -f $(OBJS) ttt

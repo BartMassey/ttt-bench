@@ -10,4 +10,4 @@ mv -f ttt ttt-gcc
 make clean
 make CC="clang -O3"
 mv -f ttt ttt-clang
-make clean
+

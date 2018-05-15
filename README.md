@@ -16,7 +16,9 @@ I split the program across several files, in order to:
   "special" one.
 * Include a lot of inter-module procedure calls. This is
   in my opinion more realistic than a toy benchmark that
-  benefits from whole-program compilation.
+  benefits from whole-program compilation. I did turn on
+  link-time optimization for compiled code where I could,
+  though: that seems fair.
 
 I used standard language tools, and the fastest settings I
 could manage. Timing loops were adjusted to give runtimes of
@@ -28,24 +30,24 @@ Per-iteration timings on my home machine (Intel i7-4770K CPU
 @ 3.50GHz) from a run 2018-05-14 are as follows:
 
         C[clang]:              0.0083s
-        Rust:                  0.0091s
+        Rust:                  0.0088s
         C[gcc]:                0.015s
-        Java[100]:             0.023s
-        Java[10]:              0.029s
-        Go:                    0.058s
-        Haskell[functional]:   0.063s
-        JavaScript[d8]:        0.10s
-        JavaScript[smjs]:      0.10s
-        Haskell[bobw]:         0.20s
-        Haskell[imperative]:   0.26s
-        Python[pypy]:          0.39s
-        PHP:                   0.61s
-        JavaScript[rhino]:     0.75s
+        Java[100]:             0.022s
+        Java[10]:              0.027s
+        Go:                    0.056s
+        Haskell[functional]:   0.060s
+        JavaScript[d8]:        0.094s
+        JavaScript[smjs]:      0.095s
+        Haskell[bobw]:         0.18s
+        Haskell[imperative]:   0.25s
+        Python[pypy]:          0.35s
+        PHP:                   0.57s
+        JavaScript[rhino]:     0.69s
         Erlang[beam]:          1.2s
         Python[nuitka]:        1.2s
-        Erlang[hipe]:          1.6s
-        Python[python3]:       3.9s
-        Nickle:                5.0s
+        Erlang[hipe]:          1.5s
+        Python[python3]:       3.6s
+        Nickle:                4.6s
         Matlab*:               15s
         Octave*:               110s
 
