@@ -53,8 +53,7 @@
 
 ( echo "python:" >&2
   cd python
-  nuitka --recurse-all ttt.py &&
-  mv ttt.exe ttt )
+  sh build.sh )
 
 ( echo "erlang:" >&2
   cd erlang
