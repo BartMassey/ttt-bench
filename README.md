@@ -27,8 +27,8 @@ at least a few seconds to amortize overhead.
 Per-iteration timings on my home machine (Intel i7-4770K CPU
 @ 3.50GHz) from a run 2018-05-14 are as follows:
 
+        C[clang]:              0.0083s
         Rust:                  0.0091s
-        C[clang]:              0.010s
         C[gcc]:                0.015s
         Java[100]:             0.023s
         Java[10]:              0.029s
@@ -42,7 +42,7 @@ Per-iteration timings on my home machine (Intel i7-4770K CPU
         PHP:                   0.61s
         JavaScript[rhino]:     0.75s
         Erlang[beam]:          1.2s
-        Python[nuitka]:        1.4s
+        Python[nuitka]:        1.2s
         Erlang[hipe]:          1.6s
         Python[python3]:       3.9s
         Nickle:                5.0s
@@ -60,14 +60,14 @@ most generic little `for`-loops ever.
 
 ### Notes
 
-* C[clang]: Compiled with `clang -O3 -march=native` using Clang
-  4.0.1.
+* C[clang]: Compiled with Clang 4.0.1 with `-O3`. See the
+  Makefile for other optimization flags.
 
-* C[gcc]: Compiled with `gcc -O4 -march=native` using GCC
-  7.3.0.
+* C[gcc]: Compiled with GCC 7.3.0 with `-O4`.  See the
+  Makefile for other optimization flags.
 
 * Rust: Compiled with `rustc` 1.26.0 via `cargo` with the
-  best optimizations I could find (see the source). Tried
+  best optimizations I could find (see `Cargo.toml`). Tried
   using vectors instead of arrays, but the result was about
   38% slower. See the branch `rust-vector`.
 
@@ -106,12 +106,13 @@ most generic little `for`-loops ever.
 
 * PHP: Contributed by Matthew Slocum. Run with PHP 5.6.33.
 
-* Python[pypy]: Using the PyPy JIT compiler version 6.0.0 with
+* Python[pypy]: Run using the PyPy JIT compiler version 6.0.0 with
   GCC 7.3.0.
 
-* Python[nuitka]: Using the Nuitka compiler version 0.5.29.1.
+* Python[nuitka]: Compiled with the Nuitka compiler version
+  0.5.29.1. See the build script for flags.
 
-* Python[python3]: Using stock Python3 version 3.6.5.
+* Python[python3]: Run using stock Python3 version 3.6.5.
 
 * Erlang[beam]: Compiled to BEAM bytecode using `erlc`
   1.20.3.6.
