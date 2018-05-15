@@ -3,6 +3,16 @@ name = "ttt"
 version = "0.1.0"
 authors = ["Bart Massey <bart.massey@gmail.com>"]
 
+[profile.release]
+opt-level = 3
+debug = false
+lto = true
+debug-assertions = false
+codegen-units = 1
+
+[dependencies]
+ndarray = "*"
+
 [lib]
 name = "ttt"
 path = "src/lib.rs"
@@ -11,12 +21,3 @@ path = "src/lib.rs"
 name = "ttt"
 path = "src/ttt.rs"
 
-[build.rustflags]
-target-cpu = "native"
-
-[profile.release]
-opt-level = 3
-debug = false
-lto = true
-debug-assertions = false
-codegen-units = 1

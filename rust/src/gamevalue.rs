@@ -5,9 +5,12 @@
 
 // Perfect Tic-Tac-Toe player in Rust
 
+extern crate ndarray;
+use self::ndarray::*;
+
 /// Returns the value of the game to the side on move if the
 /// game is over, or -2 if the game is still in progress.
-pub fn gamevalue(onmove: i32, board: &mut[[i32;3];3]) -> i32 {
+pub fn gamevalue(onmove: i32, board: &mut Array2<i32>) -> i32 {
     let mut v:i32;
     // first scan for wins
     let mut side:i32 = -1;
@@ -17,7 +20,7 @@ pub fn gamevalue(onmove: i32, board: &mut[[i32;3];3]) -> i32 {
         // scan for diagonal
         let mut n:i32 = 0;
         for d in 0..3 {
-            if board[d][d] == side {
+            if board[[d,d]] == side {
                 n += 1;
             }
         }
@@ -27,7 +30,7 @@ pub fn gamevalue(onmove: i32, board: &mut[[i32;3];3]) -> i32 {
         // scan for opposite diagonal
         n = 0;
         for d in 0..3 {
-            if board[d][2 - d] == side {
+            if board[[d,2 - d]] == side {
                 n += 1;
             }
         }
@@ -38,7 +41,7 @@ pub fn gamevalue(onmove: i32, board: &mut[[i32;3];3]) -> i32 {
         for r in 0..3 {
             n = 0;
             for c in 0..3 {
-                if board[r][c] == side {
+                if board[[r,c]] == side {
                     n += 1;
                 }
             }
@@ -50,7 +53,7 @@ pub fn gamevalue(onmove: i32, board: &mut[[i32;3];3]) -> i32 {
         for c in 0..3 {
             n = 0;
             for r in 0..3 {
-                if board[r][c] == side {
+                if board[[r,c]] == side {
                     n += 1;
                 }
             }
@@ -62,7 +65,7 @@ pub fn gamevalue(onmove: i32, board: &mut[[i32;3];3]) -> i32 {
     // scan for blanks
     for r in 0..3 {
         for c in 0..3 {
-            if board[r][c] == 0 {
+            if board[[r,c]] == 0 {
                 // game not over */
                 return -2;
             }

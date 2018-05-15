@@ -5,13 +5,16 @@
 
 // Perfect Tic-Tac-Toe player in Rust
 
+extern crate ndarray;
+use ndarray::*;
+
 extern crate ttt;
 use ttt::negamax;
 
 pub fn main() {
     let rep_str = std::env::args().nth(1).expect("missing rep count");
     let reps: u32 = rep_str.parse().expect("invalid rep count");
-    let mut board: [[i32;3];3] = [[0;3];3];
+    let mut board: Array2<i32> = Array2::zeros((3, 3));
     let mut sum_draws: i32 = negamax::negamax(1, &mut board);
     for _ in 1..reps {
         sum_draws += negamax::negamax(1, &mut board);

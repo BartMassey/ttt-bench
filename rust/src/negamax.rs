@@ -18,9 +18,12 @@
 //            v <- v'
 //     return v
 
+extern crate ndarray;
+use self::ndarray::*;
+
 use gamevalue;
 
-pub fn negamax(onmove: i32, board: &mut[[i32;3];3]) -> i32 {
+pub fn negamax(onmove: i32, board: &mut Array2<i32>) -> i32 {
     let mut v:i32 = gamevalue::gamevalue(onmove, board);
     if v != -2 {
         /* game is over */
@@ -29,13 +32,13 @@ pub fn negamax(onmove: i32, board: &mut[[i32;3];3]) -> i32 {
     v = -1;
     for r in 0..3 {
         for c in 0..3 {
-            if board[r][c] == 0 {
-                board[r][c] = onmove;
+            if board[[r,c]] == 0 {
+                board[[r,c]] = onmove;
                 let v0:i32 = -negamax(-onmove, board);
                 if v0 > v {
                     v = v0;
                 }
-                board[r][c] = 0;
+                board[[r,c]] = 0;
             }
         }
     }
