@@ -85,7 +85,8 @@ most generic little `for`-loops ever.
 * Java[10]: Run with a 10-iteration timing loop for
   comparison purposes.
 
-* Go: Compiled with Golang 1.10.1 via "go build".
+* Go: Compiled with Golang (gc) 1.10.1 via "go build".  Test
+  version compiled with gccgo was much slower.
 
 * JavaScript[smjs]: Using the js shell of SpiderMonkey, version
   C24.8.1.
