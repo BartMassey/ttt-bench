@@ -75,7 +75,9 @@ most generic little `for`-loops ever.
 * Rust: Compiled with `rustc` 1.26.0 via `cargo` with the
   best optimizations I could find (see `Cargo.toml`). Tried
   using vectors instead of arrays, but the result was about
-  38% slower. See the branch `rust-vector`.
+  38% slower. See the branch `rust-vector`. Tried using the
+  `ndarray` crate; result was slightly unreadable, but quite
+  a bit slower. See the branch `rust-ndarray`.
 
 * Java[100]: Compiled with Oracle `javac` 1.8.0 with `-O`. The
   100-iteration timing loop amortizes away much of the
