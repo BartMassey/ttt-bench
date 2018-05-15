@@ -31,6 +31,7 @@ Per-iteration timings on my home machine (Intel i7-4770K CPU
 
         C[clang]:              0.0083s
         Rust:                  0.0088s
+        C[gcc-8]:              0.013s
         C[gcc]:                0.015s
         Java[100]:             0.022s
         Java[10]:              0.027s
@@ -63,6 +64,9 @@ most generic little `for`-loops ever.
 ### Notes
 
 * C[clang]: Compiled with Clang 4.0.1 with `-O3`. See the
+  Makefile for other optimization flags.
+
+* C[gcc-8]: Compiled with GCC 8.1.0 with `-O4`.  See the
   Makefile for other optimization flags.
 
 * C[gcc]: Compiled with GCC 7.3.0 with `-O4`.  See the
