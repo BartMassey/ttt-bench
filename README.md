@@ -27,28 +27,28 @@ at least a few seconds to amortize overhead.
 ## Results
 
 Per-iteration timings on my home machine (Intel i7-4770K CPU
-@ 3.50GHz) from a run 2018-05-14 are as follows:
+@ 3.50GHz) from a run 2019-05-26 are as follows:
 
-        C[clang]:              0.0083s
-        Rust:                  0.0088s
-        C[gcc-8]:              0.013s
+        Rust:                  0.0084s
+        C[clang]:              0.0088s
         C[gcc]:                0.015s
         Java[100]:             0.022s
         Java[10]:              0.027s
-        Go:                    0.056s
+        Go:                    0.034s
         Haskell[functional]:   0.060s
-        JavaScript[d8]:        0.094s
-        JavaScript[smjs]:      0.095s
-        Haskell[bobw]:         0.18s
-        Haskell[imperative]:   0.25s
+        JavaScript[d8]:        0.078s
+        JavaScript[smjs]:      0.099s
+        Haskell[bobw]:         0.20s
+        PHP[7.3]:              0.22s
+        Haskell[imperative]:   0.23s
         Python[pypy]:          0.35s
-        PHP:                   0.57s
-        JavaScript[rhino]:     0.69s
+        PHP[5]:                0.58s
+        JavaScript[rhino]:     0.71s
         Erlang[beam]:          1.2s
-        Python[nuitka]:        1.2s
+        Python[nuitka]:        1.4s
         Erlang[hipe]:          1.5s
-        Python[python3]:       3.6s
-        Nickle:                4.6s
+        Python[python3]:       3.4s
+        Nickle:                4.4s
         Matlab*:               15s
         Octave*:               110s
 
@@ -63,16 +63,16 @@ most generic little `for`-loops ever.
 
 ### Notes
 
-* C[clang]: Compiled with Clang 4.0.1 with `-O3`. See the
+* C[clang]: Compiled with Clang 7.0.1 with `-O3`. See the
   Makefile for other optimization flags.
 
-* C[gcc-8]: Compiled with GCC 8.1.0 with `-O4`.  See the
-  Makefile for other optimization flags.
+* C[gcc]: Compiled with GCC 8.3.0 with `-O4`.  See the
+  Makefile for other optimization flags. I am deeply
+  suspicious of the doubled runtime vs `clang` and `rustc`:
+  could be real, could be an artifact of the benchmark setup
+  being taken advantage of by LLVM.
 
-* C[gcc]: Compiled with GCC 7.3.0 with `-O4`.  See the
-  Makefile for other optimization flags.
-
-* Rust: Compiled with `rustc` 1.26.0 via `cargo` with the
+* Rust: Compiled with `rustc` 1.34.0 via `cargo` with the
   best optimizations I could find (see `Cargo.toml`). Tried
   using vectors instead of arrays, but the result was about
   38% slower. See the branch `rust-vector`. Tried using the
@@ -87,44 +87,46 @@ most generic little `for`-loops ever.
 * Java[10]: Run with a 10-iteration timing loop for
   comparison purposes.
 
-* Go: Compiled with Golang (gc) 1.10.1 via "go build".  Test
+* Go: Compiled with Golang (gc) 1.11.6 via "go build".  Test
   version compiled with gccgo was much slower.
 
 * JavaScript[smjs]: Using the js shell of SpiderMonkey, version
-  C24.8.1.
+  C60.2.3.
 
 * JavaScript[d8]: Using the d8 shell of the v8 interpreter,
-  version 3.14.5.
+  version 7.3.0.
 
 * JavaScript[rhino]: Using the Java-based rhino interpreter
   shell, version 1.7.7.1, with `-opt 9`.
 
 * Haskell[imperative]: A relatively unoptimized imperative version
   using `Data.Array.IO` and sticking as closely as possible
-  to the pseudocode. Compiled with GHC 8.2.2 with
+  to the pseudocode. Compiled with GHC 8.4.4 with
   `-O2`. Ugly, and required some ugly plumbing.
 
 * Haskell[functional]: A reasonably natural pure-functional version
   of the Haskell code using `Data.Map` but following the
   general outline of the pseudocode. Compiled with GHC
-  8.2.2 with `-O2`.
+  8.4.4 with `-O2`.
 
 * Haskell[bobw]: A "best of both worlds" version of the Haskell
   code using `Data.Array.IO` but with cleaned-up functional
-  style. Compiled with GHC 8.2.2 with `-O2`.
+  style. Compiled with GHC 8.4.4 with `-O2`.
 
-* PHP: Contributed by Matthew Slocum. Run with PHP 5.6.33.
+* PHP[5]: Contributed by Matthew Slocum. Run with PHP 5.6.40.
 
-* Python[pypy]: Run using the PyPy JIT compiler version 6.0.0 with
-  GCC 7.3.0.
+* PHP[7.3]: Contributed by Matthew Slocum. Run with PHP 7.3.4.
+
+* Python[pypy]: Run using the PyPy JIT compiler version 7.0.0 with
+  GCC 8.3.0.
 
 * Python[nuitka]: Compiled with the Nuitka compiler version
-  0.5.29.1. See the build script for flags.
+  0.6.1.1. See the build script for flags.
 
-* Python[python3]: Run using stock Python3 version 3.6.5.
+* Python[python3]: Run using stock Python3 version 3.7.3.
 
 * Erlang[beam]: Compiled to BEAM bytecode using `erlc`
-  1.20.3.6.
+  1.21.2.6.
 
   Erlang has about 1s of startup overhead, including a
   noticeable amount of time to stop after printing the
@@ -138,7 +140,7 @@ most generic little `for`-loops ever.
   20% faster.
 
 * Erlang[hipe]: Compiled to native code via HiPE using
-  `erlc` 1.20.3.6.  This runs some slower than BEAM bytecode,
+  `erlc` 1.21.2.6.  This runs some slower than BEAM bytecode,
   although the flattened-board version is almost as fast as
   the flattened-board BEAM code.
 

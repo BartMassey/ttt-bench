@@ -31,25 +31,25 @@
 
 ( echo "haskell/imperative:" >&2
   cd haskell/imperative
-  cabal update
-  cabal clean
-  cabal configure
-  cabal build )
+  cabal v2-update
+  cabal v2-clean
+  cabal v2-configure
+  cabal v2-build )
 
 
 ( echo "haskell/functional:" >&2
   cd haskell/functional
-  cabal update
-  cabal clean
-  cabal configure
-  cabal build )
+  cabal v2-update
+  cabal v2-clean
+  cabal v2-configure
+  cabal v2-build )
 
 ( echo "haskell/bobw:" >&2
   cd haskell/bobw
-  cabal update
-  cabal clean
-  cabal configure
-  cabal build )
+  cabal v2-update
+  cabal v2-clean
+  cabal v2-configure
+  cabal v2-build )
 
 ( echo "python:" >&2
   cd python
