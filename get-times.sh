@@ -20,8 +20,10 @@ TIME="time -f %e"
 # program prints on stdout.
 
 ( cd php
-  echo -n "PHP: 10 "
-  $TIME php ttt.php 10 2>&1 >/dev/null )
+  echo -n "PHP[5]: 10 "
+  $TIME php5 ttt.php 10 2>&1 >/dev/null
+  echo -n "PHP[7.3]: 10 "
+  $TIME php7.3 ttt.php 10 2>&1 >/dev/null )
 
 ( cd rust
   echo -n "Rust: 500 "
