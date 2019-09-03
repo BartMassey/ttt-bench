@@ -72,8 +72,8 @@ TIME="time -f %e"
   $TIME sh ../ttt.sh 10 2>&1 >/dev/null )
 
 ( cd erlang/hipe
-  echo -n "Erlang[hipe]: 5 "
-  $TIME sh ../ttt.sh 5 2>&1 >/dev/null )
+  echo -n "Erlang[hipe]: 10 "
+  $TIME sh ../ttt.sh1 10 2>&1 >/dev/null )
 
 ( cd python
   echo -n "Python[pypy]: 5 "

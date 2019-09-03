@@ -44,9 +44,9 @@ Per-iteration timings on my home machine (Intel i7-4770K CPU
         Python[pypy]:          0.35s
         PHP[5]:                0.58s
         JavaScript[rhino]:     0.71s
-        Erlang[beam]:          1.2s
+        Erlang[beam]:          1.4s
         Python[nuitka]:        1.4s
-        Erlang[hipe]:          1.5s
+        Erlang[hipe]:          1.4s
         Python[python3]:       3.4s
         Nickle:                4.4s
         Matlab*:               15s
@@ -126,7 +126,7 @@ most generic little `for`-loops ever.
 * Python[python3]: Run using stock Python3 version 3.7.3.
 
 * Erlang[beam]: Compiled to BEAM bytecode using `erlc`
-  1.21.2.6.
+  1.22.0.7.
 
   Erlang has about 1s of startup overhead, including a
   noticeable amount of time to stop after printing the
@@ -140,9 +140,9 @@ most generic little `for`-loops ever.
   20% faster.
 
 * Erlang[hipe]: Compiled to native code via HiPE using
-  `erlc` 1.21.2.6.  This runs some slower than BEAM bytecode,
-  although the flattened-board version is almost as fast as
-  the flattened-board BEAM code.
+  `erlc` 1.22.0.7. This seems to be identical to the BEAM
+  version at this point, which makes me suspicious that I am
+  not compiling things right.
 
 * Nickle: Run with version 2.77.
 
