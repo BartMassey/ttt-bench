@@ -4,14 +4,8 @@
 # Please see the file COPYING in the source
 # distribution of this software for license terms.
 
-# Build BEAM and HiPE versions of Erlang TTT
+# Clean BEAM and HiPE versions of Erlang TTT
 
-[ -d hipe ] || mkdir hipe
 rm -rf *.beam
-erl -make
-mv *.beam hipe/
-
-[ -d beam ] || mkdir beam
-rm -rf *.beam
-erl -make +native +o3
-mv *.beam beam/
+[ -d hipe ] && rm -rf hipe
+[ -d beam ] && rm -rf beam
