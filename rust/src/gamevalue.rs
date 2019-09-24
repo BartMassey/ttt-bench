@@ -7,6 +7,7 @@
 
 /// Returns the value of the game to the side on move if the
 /// game is over, or -2 if the game is still in progress.
+#[allow(clippy::needless_range_loop)]
 pub fn gamevalue(onmove: i32, board: &[[i32;3];3]) -> i32 {
     let mut v:i32;
     // first scan for wins
