@@ -7,7 +7,7 @@
 
 /// Returns the value of the game to the side on move if the
 /// game is over, or -2 if the game is still in progress.
-pub fn gamevalue(onmove: i32, board: &mut[[i32;3];3]) -> i32 {
+pub fn gamevalue(onmove: i32, board: &[[i32;3];3]) -> i32 {
     let mut v:i32;
     // first scan for wins
     let mut side:i32 = -1;
