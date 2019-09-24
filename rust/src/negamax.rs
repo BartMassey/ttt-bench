@@ -31,7 +31,7 @@ pub fn negamax(onmove: i32, board: &mut[[i32;3];3]) -> i32 {
         for c in 0..3 {
             if board[r][c] == 0 {
                 board[r][c] = onmove;
-                let v0:i32 = -negamax(-onmove, board);
+                let v0 = -negamax(-onmove, board);
                 if v0 > v {
                     v = v0;
                 }
