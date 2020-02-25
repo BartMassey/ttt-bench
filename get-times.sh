@@ -22,8 +22,8 @@ TIME="time -f %e"
 ( cd php
   echo -n "PHP[5]: 10 "
   $TIME php5 ttt.php 10 2>&1 >/dev/null
-  echo -n "PHP[7.3]: 10 "
-  $TIME php7.3 ttt.php 10 2>&1 >/dev/null )
+  echo -n "PHP[7.4]: 10 "
+  $TIME php7.4 ttt.php 10 2>&1 >/dev/null )
 
 ( cd rust
   echo -n "Rust: 500 "
@@ -60,8 +60,8 @@ TIME="time -f %e"
   $TIME cabal run ttt 10 2>&1 >/dev/null )
 
 ( cd haskell/functional
-  echo -n "Haskell[functional]: 100 "
-  $TIME cabal run ttt 100 2>&1 >/dev/null )
+  echo -n "Haskell[functional]: 1 "
+  $TIME cabal run ttt 1 2>&1 >/dev/null )
 
 ( cd haskell/bobw
   echo -n "Haskell[bobw]: 10 "
