@@ -23,7 +23,8 @@
   cd go
   GOPATH="`pwd`"
   export GOPATH
-  go clean )
+  go clean
+  rm -f ttt )
 
 ( echo "haskell/imperative:" >&2
   cd haskell/imperative
