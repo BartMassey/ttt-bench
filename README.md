@@ -27,33 +27,33 @@ at least a few seconds to amortize overhead.
 ## Results
 
 Per-iteration timings on my home machine (Intel i7-4770K CPU
-@ 3.50GHz) from a run 2019-05-26 are as follows:
+@ 3.50GHz) from a run 2020-02-25 are as follows:
 
-        Rust:                  0.0084s
-        C[clang]:              0.0088s
-        C[gcc]:                0.015s
-        Java[100]:             0.022s
-        Java[10]:              0.027s
+        Rust:                  0.0088s
+        C[clang]:              0.0092s
+        C[gcc]:                0.013s
+        Java[100]:             0.023s
+        Java[10]:              0.028s
         Go:                    0.034s
-        Haskell[functional]:   0.060s
-        JavaScript[d8]:        0.078s
-        JavaScript[smjs]:      0.099s
-        Haskell[bobw]:         0.20s
-        PHP[7.3]:              0.22s
-        Haskell[imperative]:   0.23s
+        JavaScript[d8]:        0.080s
+        JavaScript[smjs]:      0.090s
+        Haskell[bobw]:         0.19s
+        PHP[7.4]:              0.20s
+        Haskell[imperative]:   0.26s
+        Haskell[functional]:   0.31s
         Python[pypy]:          0.35s
-        PHP[5]:                0.58s
+        PHP[5]:                0.59s
         JavaScript[rhino]:     0.71s
-        Erlang[beam]:          1.4s
-        Python[nuitka]:        1.4s
-        Erlang[hipe]:          1.4s
+        Erlang[beam]:          1.6s
+        Erlang[hipe]:          1.6s
+        Python[nuitka3]:       2.1s
         Python[python3]:       3.4s
-        Nickle:                4.4s
-        Matlab*:               15s
-        Octave*:               110s
+        Nickle:                4.5s
 
-Yes, Octave is more than 10000x slower than C on this
-benchmark!
+I have quit listing times for Octave and Matlab. Octave
+seems stuck at about 110s, which is a pain to deal with. I
+don't have convenient access to Matlab, and none at all on
+my hardware.
 
 I was surprised to see the differences in performance
 between languages. Slow recursion might be a problem for
@@ -63,21 +63,25 @@ most generic little `for`-loops ever.
 
 ### Notes
 
-* C[clang]: Compiled with Clang 7.0.1 with `-O3`. See the
+* Rust: Compiled with `rustc` 1.41.0 via `cargo` with the
+  best optimizations I could find (see `Cargo.toml`).
+
+  The run-to-run variance in the Rust measurements is quite
+  high.
+
+  Tried using vectors instead of arrays, but the result was
+  about 38% slower. See the branch `rust-vector`. Tried
+  using the `ndarray` crate; result was slightly unreadable,
+  but quite a bit slower. See the branch `rust-ndarray`.
+
+* C[clang]: Compiled with Clang 8.0.1-7 with `-O3`. See the
   Makefile for other optimization flags.
 
-* C[gcc]: Compiled with GCC 8.3.0 with `-O4`.  See the
+* C[gcc]: Compiled with GCC 9.2.1 with `-O4`.  See the
   Makefile for other optimization flags. I am deeply
   suspicious of the doubled runtime vs `clang` and `rustc`:
   could be real, could be an artifact of the benchmark setup
   being taken advantage of by LLVM.
-
-* Rust: Compiled with `rustc` 1.34.0 via `cargo` with the
-  best optimizations I could find (see `Cargo.toml`). Tried
-  using vectors instead of arrays, but the result was about
-  38% slower. See the branch `rust-vector`. Tried using the
-  `ndarray` crate; result was slightly unreadable, but quite
-  a bit slower. See the branch `rust-ndarray`.
 
 * Java[100]: Compiled with Oracle `javac` 1.8.0 with `-O`. The
   100-iteration timing loop amortizes away much of the
@@ -87,11 +91,11 @@ most generic little `for`-loops ever.
 * Java[10]: Run with a 10-iteration timing loop for
   comparison purposes.
 
-* Go: Compiled with Golang (gc) 1.11.6 via "go build".  Test
+* Go: Compiled with Golang (gc) 1.13.7 via "go build".  Test
   version compiled with gccgo was much slower.
 
 * JavaScript[smjs]: Using the js shell of SpiderMonkey, version
-  C60.2.3.
+  C60.8.0.
 
 * JavaScript[d8]: Using the d8 shell of the v8 interpreter,
   version 7.3.0.
@@ -101,32 +105,37 @@ most generic little `for`-loops ever.
 
 * Haskell[imperative]: A relatively unoptimized imperative version
   using `Data.Array.IO` and sticking as closely as possible
-  to the pseudocode. Compiled with GHC 8.4.4 with
+  to the pseudocode. Compiled with GHC 8.6.5 with
   `-O2`. Ugly, and required some ugly plumbing.
 
-* Haskell[functional]: A reasonably natural pure-functional version
-  of the Haskell code using `Data.Map` but following the
-  general outline of the pseudocode. Compiled with GHC
-  8.4.4 with `-O2`.
+* Haskell[functional]: A reasonably natural pure-functional
+  version of the Haskell code using `Data.Map` but following
+  the general outline of the pseudocode. Compiled with GHC
+  8.6.5 with `-O2`.
+
+  I have not figured out a way to run more than one
+  iteration internal to the program without all of Haskell's
+  laziness optimizing most of subsequent iterations away;
+  the Haskell compiler is too clever for me.
 
 * Haskell[bobw]: A "best of both worlds" version of the Haskell
   code using `Data.Array.IO` but with cleaned-up functional
-  style. Compiled with GHC 8.4.4 with `-O2`.
+  style. Compiled with GHC 8.6.5 with `-O2`.
 
 * PHP[5]: Contributed by Matthew Slocum. Run with PHP 5.6.40.
 
-* PHP[7.3]: Contributed by Matthew Slocum. Run with PHP 7.3.4.
+* PHP[7.4]: Contributed by Matthew Slocum. Run with PHP 7.4.3.
 
-* Python[pypy]: Run using the PyPy JIT compiler version 7.0.0 with
-  GCC 8.3.0.
+* Python[pypy]: Run using the PyPy JIT compiler version 7.3.0 with
+  GCC 9.2.1.
 
-* Python[nuitka]: Compiled with the Nuitka compiler version
-  0.6.1.1. See the build script for flags.
+* Python[nuitka3]: Compiled with the Nuitka3 compiler version
+  0.6.7. See the build script for flags.
 
-* Python[python3]: Run using stock Python3 version 3.7.3.
+* Python[python3]: Run using stock Python3 version 3.7.6.
 
 * Erlang[beam]: Compiled to BEAM bytecode using `erlc`
-  1.22.0.7.
+  22.2.4.
 
   Erlang has about 1s of startup overhead, including a
   noticeable amount of time to stop after printing the
@@ -140,18 +149,12 @@ most generic little `for`-loops ever.
   20% faster.
 
 * Erlang[hipe]: Compiled to native code via HiPE using
-  `erlc` 1.22.0.7. This seems to be identical to the BEAM
+  `erlc` 22.2.4. This seems to be identical to the BEAM
   version at this point, which makes me suspicious that I am
   not compiling things right.
 
 * Nickle: Run with version 2.77.
 
-* Matlab*: Run a long time ago on a different (much slower)
-  machine, because I had access to Matlab there.
-
-* Octave*: Run with version 4.2.2 on 2018-05-14. Result is
-  rounded to two significant places for consistency with
-  other benchmarks: actual time was longer.
 
 ## Replication
 
@@ -179,6 +182,13 @@ Debian. After that, you have a 3-step process:
 I could easily have built a shell script for this, but I've
 found there's a lot of manual iteration anyway, so for now I
 suggest you just go with it.
+
+Finally, you can run
+
+        sh get-versions.sh
+
+to save a lot of work tracking down the various version
+numbers.
 
 ## License
 
