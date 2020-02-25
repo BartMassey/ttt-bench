@@ -1,0 +1,7 @@
+/.gitignore
+/erl_crash.dump
+/ttt.depends
+/positions
+*.beam
+/beam/
+/hipe/

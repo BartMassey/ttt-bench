@@ -25,7 +25,7 @@ homepage:            http://github.com/BartMassey/ttt-bench
 license:             MIT
 
 -- The file containing the license text.
-license-file:        ../../COPYING
+-- license-file:        ../../COPYING
 
 -- The package author(s).
 author:              Bart Massey

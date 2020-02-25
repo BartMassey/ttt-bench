@@ -57,23 +57,23 @@ TIME="time -f %e"
 
 ( cd haskell/imperative
   echo -n "Haskell[imperative]: 10 "
-  $TIME dist/build/ttt/ttt 10 2>&1 >/dev/null )
+  $TIME cabal run ttt 10 2>&1 >/dev/null )
 
 ( cd haskell/functional
-  echo -n "Haskell[functional]: 10 "
-  $TIME dist/build/ttt/ttt 10 2>&1 >/dev/null )
+  echo -n "Haskell[functional]: 100 "
+  $TIME cabal run ttt 100 2>&1 >/dev/null )
 
 ( cd haskell/bobw
   echo -n "Haskell[bobw]: 10 "
-  $TIME dist/build/ttt/ttt 10 2>&1 >/dev/null )
+  $TIME cabal run ttt 10 2>&1 >/dev/null )
 
 ( cd erlang/beam
-  echo -n "Erlang[beam]: 10 "
-  $TIME sh ../ttt.sh 10 2>&1 >/dev/null )
+  echo -n "Erlang[beam]: 5 "
+  $TIME sh ../ttt.sh 5 2>&1 >/dev/null )
 
 ( cd erlang/hipe
-  echo -n "Erlang[hipe]: 10 "
-  $TIME sh ../ttt.sh1 10 2>&1 >/dev/null )
+  echo -n "Erlang[hipe]: 5 "
+  $TIME sh ../ttt.sh 5 2>&1 >/dev/null )
 
 ( cd python
   echo -n "Python[pypy]: 5 "
@@ -87,11 +87,11 @@ TIME="time -f %e"
   echo -n "Nickle: 1 "
   $TIME /usr/bin/nickle ttt.5c 2>&1 >/dev/null )
 
-# We ran Matlab elsewhere
-echo "Matlab*: 1 15"
+# We ran Matlab elsewhere long ago
+# echo "Matlab*: 1 15"
 
 # Octave takes too damn long
 #( cd octave
 #  echo -n "Octave: 1 "
 #  etime -f '%0e' octave ttt.m 2>&1 >/dev/null )
-echo "Octave*: 1 110"
+# echo "Octave*: 1 110"
