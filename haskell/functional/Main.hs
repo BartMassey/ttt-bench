@@ -16,9 +16,6 @@ import GameValue (cells)
 main :: IO ()
 main = do
   [repStr] <- getArgs
-  let reps = read repStr :: Int
+  let 1 = read repStr :: Int
   let board = fromAscList $ zip cells (repeat 0)
-  replicateM_ (reps - 1) $ do
-         let !_ = negamax 1 board
-         return ()
   print $ negamax 1 board
