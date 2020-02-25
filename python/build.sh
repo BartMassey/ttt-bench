@@ -11,4 +11,4 @@ pypy ttt.py 1 >/dev/null
 
 # Compile Python code with Nuitka.
 rm -rf ttt.bin ttt-nuitka ttt.build
-nuitka --recurse-all --lto -j 1 --clang ttt.py && mv ttt.bin ttt-nuitka
+nuitka3 --recurse-all --lto -j 1 --clang ttt.py && mv ttt.bin ttt-nuitka
