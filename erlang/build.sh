@@ -8,10 +8,10 @@
 
 [ -d hipe ] || mkdir hipe
 rm -rf *.beam
-erl -make
+erlc *.erl
 mv *.beam hipe/
 
 [ -d beam ] || mkdir beam
 rm -rf *.beam
-erl -make +native +o3
+erlc +native +o3 *.erl
 mv *.beam beam/
