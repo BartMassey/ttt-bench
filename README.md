@@ -26,29 +26,28 @@ at least a few seconds to amortize overhead.
 
 ## Results
 
-Per-iteration timings on my home machine (Intel i7-4770K CPU
-@ 3.50GHz) from a run 2020-02-25 are as follows:
+Per-iteration timings on my home machine (AMD Ryzen 9 3900X CPU
+@ 3.8GHz) from a run 2022-02-14 are as follows:
 
-        Rust:                  0.0088s
-        C[clang]:              0.0092s
+        C[clang]:              0.0057s
+        Rust:                  0.0059s
         C[gcc]:                0.013s
-        Java[100]:             0.023s
-        Java[10]:              0.028s
-        Go:                    0.034s
-        JavaScript[d8]:        0.080s
-        JavaScript[smjs]:      0.090s
-        Haskell[bobw]:         0.19s
-        PHP[7.4]:              0.20s
-        Haskell[imperative]:   0.26s
-        Haskell[functional]:   0.31s
-        Python[pypy]:          0.35s
-        PHP[5]:                0.59s
-        JavaScript[rhino]:     0.71s
-        Erlang[beam]:          1.6s
+        Java[100]:             0.019s
+        Java[10]:              0.023s
+        Go:                    0.027s
+        JavaScript[d8]:        0.061s
+        JavaScript[smjs]:      0.071s
+        Haskell[bobw]:         0.14s
+        PHP[8.1]:              0.15s
+        Haskell[imperative]:   0.20s
+        Haskell[functional]:   0.28s
+        Python[pypy]:          0.29s
+        JavaScript[rhino]:     0.73s
+        Python[nuitka]:        1.4s
         Erlang[hipe]:          1.6s
-        Python[nuitka3]:       2.1s
-        Python[python3]:       3.4s
-        Nickle:                4.5s
+        Python[python3]:       2.2s
+        Erlang[beam]:          2.5s
+        Nickle:                4.6s
 
 I have quit listing times for Octave and Matlab. Octave
 seems stuck at about 110s, which is a pain to deal with. I
@@ -63,27 +62,27 @@ most generic little `for`-loops ever.
 
 ### Notes
 
-* Rust: Compiled with `rustc` 1.41.0 via `cargo` with the
+* For software versions, see the file
+  [`versions.txt`](versions.txt) in this distribution.
+
+* Rust: Compiled with `rustc` via `cargo` with the
   best optimizations I could find (see `Cargo.toml`).
 
-  The run-to-run variance in the Rust measurements is quite
-  high.
-
   Tried using vectors instead of arrays, but the result was
-  about 38% slower. See the branch `rust-vector`. Tried
-  using the `ndarray` crate; result was slightly unreadable,
-  but quite a bit slower. See the branch `rust-ndarray`.
+  slower. See the branch `rust-vector`. Tried using the
+  `ndarray` crate; result was slightly unreadable, but quite
+  a bit slower. See the branch `rust-ndarray`.
 
-* C[clang]: Compiled with Clang 8.0.1-7 with `-O3`. See the
-  Makefile for other optimization flags.
+* C[clang]: Compiled with Clang with `-O3`. See the
+  `Makefile` for other optimization flags.
 
-* C[gcc]: Compiled with GCC 9.2.1 with `-O4`.  See the
-  Makefile for other optimization flags. I am deeply
+* C[gcc]: Compiled with GCC with `-O4`.  See the
+  `Makefile` for other optimization flags. I am deeply
   suspicious of the doubled runtime vs `clang` and `rustc`:
   could be real, could be an artifact of the benchmark setup
   being taken advantage of by LLVM.
 
-* Java[100]: Compiled with Oracle `javac` 1.8.0 with `-O`. The
+* Java[100]: Compiled with Oracle `javac` with `-O`. The
   100-iteration timing loop amortizes away much of the
   startup cost and gives time for the Hotspot JIT to kick
   in.
@@ -91,27 +90,26 @@ most generic little `for`-loops ever.
 * Java[10]: Run with a 10-iteration timing loop for
   comparison purposes.
 
-* Go: Compiled with Golang (gc) 1.13.7 via "go build".  Test
-  version compiled with gccgo was much slower.
+* Go: Compiled with Golang (gc) via "go build".  Test
+  version previously compiled with gccgo was much slower.
+  Built with `GO111MODULE=off`; be careful.
 
-* JavaScript[smjs]: Using the js shell of SpiderMonkey, version
-  C60.8.0.
+* JavaScript[smjs]: Using the js shell of SpiderMonkey.
 
-* JavaScript[d8]: Using the d8 shell of the v8 interpreter,
-  version 7.3.0.
+* JavaScript[d8]: Using the d8 shell of the v8 interpreter.
 
 * JavaScript[rhino]: Using the Java-based rhino interpreter
-  shell, version 1.7.7.1, with `-opt 9`.
+  shell, with `-opt 9`.
 
 * Haskell[imperative]: A relatively unoptimized imperative version
   using `Data.Array.IO` and sticking as closely as possible
-  to the pseudocode. Compiled with GHC 8.6.5 with
+  to the pseudocode. Compiled with GHC with
   `-O2`. Ugly, and required some ugly plumbing.
 
 * Haskell[functional]: A reasonably natural pure-functional
   version of the Haskell code using `Data.Map` but following
   the general outline of the pseudocode. Compiled with GHC
-  8.6.5 with `-O2`.
+  with `-O2`.
 
   I have not figured out a way to run more than one
   iteration internal to the program without all of Haskell's
@@ -120,22 +118,18 @@ most generic little `for`-loops ever.
 
 * Haskell[bobw]: A "best of both worlds" version of the Haskell
   code using `Data.Array.IO` but with cleaned-up functional
-  style. Compiled with GHC 8.6.5 with `-O2`.
+  style. Compiled with GHC with `-O2`.
 
-* PHP[5]: Contributed by Matthew Slocum. Run with PHP 5.6.40.
+* PHP: Contributed by Matthew Slocum.
 
-* PHP[7.4]: Contributed by Matthew Slocum. Run with PHP 7.4.3.
+* Python[pypy]: Run using the PyPy JIT compiler with GCC.
 
-* Python[pypy]: Run using the PyPy JIT compiler version 7.3.0 with
-  GCC 9.2.1.
+* Python[nuitka3]: Compiled with the Nuitka3 compiler.
+  See the build script for flags.
 
-* Python[nuitka3]: Compiled with the Nuitka3 compiler version
-  0.6.7. See the build script for flags.
+* Python[python3]: Run using stock Python3.
 
-* Python[python3]: Run using stock Python3 version 3.7.6.
-
-* Erlang[beam]: Compiled to BEAM bytecode using `erlc`
-  22.2.4.
+* Erlang[beam]: Compiled to BEAM bytecode using `erlc`.
 
   Erlang has about 1s of startup overhead, including a
   noticeable amount of time to stop after printing the
@@ -149,12 +143,7 @@ most generic little `for`-loops ever.
   20% faster.
 
 * Erlang[hipe]: Compiled to native code via HiPE using
-  `erlc` 22.2.4. This seems to be identical to the BEAM
-  version at this point, which makes me suspicious that I am
-  not compiling things right.
-
-* Nickle: Run with version 2.77.
-
+  `erlc`.
 
 ## Replication
 
