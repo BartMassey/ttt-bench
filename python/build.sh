@@ -11,4 +11,4 @@ pypy ttt.py 1 >/dev/null
 
 # Compile Python code with Nuitka.
 rm -rf ttt.bin ttt-nuitka ttt.build
-nuitka3 --lto=yes --clang ttt.py && mv ttt.bin ttt-nuitka
+nuitka3 --follow-imports --lto=yes --clang ttt.py && mv ttt.bin ttt-nuitka
