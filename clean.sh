@@ -30,20 +30,23 @@
   cd haskell/imperative
   cabal v2-clean
   rm -rf dist
-  rm -rf cabal.project.local )
+  rm -rf cabal.project.local
+  rm -f *~ )
 
 
 ( echo "haskell/functional:" >&2
   cd haskell/functional
   cabal v2-clean
   rm -rf dist
-  rm -rf cabal.project.local )
+  rm -rf cabal.project.local
+  rm -f *~ )
 
 ( echo "haskell/bobw:" >&2
   cd haskell/bobw
   cabal v2-clean
   rm -rf dist
-  rm -rf cabal.project.local )
+  rm -rf cabal.project.local
+  rm -f *~ )
 
 ( echo "python:" >&2
   cd python
