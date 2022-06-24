@@ -29,9 +29,7 @@ TIME="time -f %e"
 
 ( cd c
   echo -n "C[clang]: 500 "
-  $TIME ./ttt-clang 500 2>&1 >/dev/null )
-
-( cd c
+  $TIME ./ttt-clang 500 2>&1 >/dev/null
   echo -n "C[gcc]: 500 "
   $TIME ./ttt-gcc 500 2>&1 >/dev/null )
 
@@ -57,6 +55,8 @@ TIME="time -f %e"
   echo -n "Haskell[imperative]: 10 "
   $TIME cabal run ttt 10 2>&1 >/dev/null )
 
+# We are stuck with one iteration until this
+# can be black-boxed properly. See Issue #6.
 ( cd haskell/functional
   echo -n "Haskell[functional]: 1 "
   $TIME cabal run ttt 1 2>&1 >/dev/null )
@@ -80,6 +80,10 @@ TIME="time -f %e"
   $TIME ./ttt-nuitka 2 2>&1 >/dev/null
   echo -n "Python[python3]: 1 "
   $TIME python3 ttt.py 1 2>&1 >/dev/null )
+
+( cd cobol
+  echo -n "COBOL: 2 "
+  echo 2 | $TIME ./ttt 2>&1 >/dev/null )
 
 ( cd nickle
   echo -n "Nickle: 1 "

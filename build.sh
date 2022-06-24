@@ -58,3 +58,8 @@
 ( echo "erlang:" >&2
   cd erlang
   sh build.sh )
+
+( echo "cobol:" >&2
+  cd cobol
+  make clean
+  make )

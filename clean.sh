@@ -55,3 +55,7 @@
 ( echo "erlang:" >&2
   cd erlang
   sh clean.sh )
+
+( echo "cobol:" >&2
+  cd cobol
+  make clean )

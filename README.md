@@ -27,26 +27,27 @@ at least a few seconds to amortize overhead.
 ## Results
 
 Per-iteration timings on my home machine (AMD Ryzen 9 3900X CPU
-@ 3.8GHz) from a run 2022-02-14 are as follows:
+@ 3.8GHz) from a run 2022-06-23 are as follows:
 
-        C[clang]:              0.0057s
-        Rust:                  0.0059s
+        C[clang]:              0.0058s
+        Rust:                  0.0058s
         C[gcc]:                0.013s
-        Java[100]:             0.019s
-        Java[10]:              0.023s
-        Go:                    0.027s
-        JavaScript[d8]:        0.061s
-        JavaScript[smjs]:      0.071s
+        Java[100]:             0.018s
+        Java[10]:              0.026s
+        Go:                    0.028s
+        JavaScript[d8]:        0.068s
+        JavaScript[smjs]:      0.073s
         Haskell[bobw]:         0.14s
         PHP[8.1]:              0.15s
-        Haskell[imperative]:   0.20s
-        Haskell[functional]:   0.28s
+        Haskell[imperative]:   0.18s
+        Haskell[functional]:   0.29s
         Python[pypy]:          0.29s
-        JavaScript[rhino]:     0.73s
+        JavaScript[rhino]:     0.72s
         Python[nuitka]:        1.4s
-        Erlang[hipe]:          1.6s
+        Erlang[hipe]:          1.5s
+        COBOL:                 1.9s
         Python[python3]:       2.2s
-        Erlang[beam]:          2.5s
+        Erlang[beam]:          2.4s
         Nickle:                4.6s
 
 I have quit listing times for Octave and Matlab. Octave
@@ -54,7 +55,7 @@ seems stuck at about 110s, which is a pain to deal with. I
 don't have convenient access to Matlab, and none at all on
 my hardware.
 
-I was surprised to see the differences in performance
+I am always surprised to see the differences in performance
 between languages. Slow recursion might be a problem for
 this code, but most of the time is expected to be spent in
 gamevalue() checking for wins. As such, it's running the
@@ -109,12 +110,8 @@ most generic little `for`-loops ever.
 * Haskell[functional]: A reasonably natural pure-functional
   version of the Haskell code using `Data.Map` but following
   the general outline of the pseudocode. Compiled with GHC
-  with `-O2`.
-
-  I have not figured out a way to run more than one
-  iteration internal to the program without all of Haskell's
-  laziness optimizing most of subsequent iterations away;
-  the Haskell compiler is too clever for me.
+  with `-O2`. Based on one iteration: see
+  [Issue #6](https://github.com/BartMassey/ttt-bench/issues/6).
 
 * Haskell[bobw]: A "best of both worlds" version of the Haskell
   code using `Data.Array.IO` but with cleaned-up functional
@@ -145,6 +142,13 @@ most generic little `for`-loops ever.
 * Erlang[hipe]: Compiled to native code via HiPE using
   `erlc`.
 
+* COBOL: Compiled to C and thence to native using GNU Cobol
+  (aka OpenCobol). This benchmark probably isn't terribly
+  fair to the COBOL compiler. I am not at all knowledgeable
+  about COBOL: there may well be small code changes or
+  changes in compiler invocation that will speed the code up
+  dramatically.
+
 ## Replication
 
 To run this yourself, you'll first need to install the
@@ -174,7 +178,7 @@ suggest you just go with it.
 
 Finally, you can run
 
-        sh get-versions.sh
+        sh get-versions.sh | tee versions.txt
 
 to save a lot of work tracking down the various version
 numbers.

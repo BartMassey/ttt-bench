@@ -17,3 +17,4 @@ erl \
     -noshell |
     awk '{print "erlang", $1}'
 nickle -e "version" | tr -d '"' | awk '{print "nickle", $1}'
+cobc --version | egrep '^cobc' | sed 's/.* //' | awk '{print "COBOL", $1}'
