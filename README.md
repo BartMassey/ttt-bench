@@ -77,11 +77,11 @@ most generic little `for`-loops ever.
 * C[clang]: Compiled with Clang with `-O3`. See the
   `Makefile` for other optimization flags.
 
-* C[gcc]: Compiled with GCC with `-O4`.  See the
-  `Makefile` for other optimization flags. I am deeply
-  suspicious of the doubled runtime vs `clang` and `rustc`:
-  could be real, could be an artifact of the benchmark setup
-  being taken advantage of by LLVM.
+* C[gcc]: Compiled with GCC with `-O4`.  See the `Makefile`
+  for other optimization flags. I am deeply suspicious of
+  the doubled runtime of GCC *vs* LLVM's `clang` and
+  `rustc`: could be real, could be an artifact of the
+  benchmark setup being taken advantage of by LLVM.
 
 * Java[100]: Compiled with Oracle `javac` with `-O`. The
   100-iteration timing loop amortizes away much of the
