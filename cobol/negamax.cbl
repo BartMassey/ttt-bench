@@ -2,8 +2,10 @@
        PROGRAM-ID. NegaMax IS RECURSIVE.
 
        DATA DIVISION.
-       LOCAL-STORAGE SECTION.
+       WORKING-STORAGE SECTION.
        01 v0 PIC S9.
+
+       LOCAL-STORAGE SECTION.
        01 v PIC S9.
        01 r PIC 9.
        01 c PIC 9.

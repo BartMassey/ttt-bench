@@ -2,7 +2,7 @@
        PROGRAM-ID. TTT.
 
        DATA DIVISION.
-       LOCAL-STORAGE SECTION.
+       WORKING-STORAGE SECTION.
        01 n PIC 99.
        01 state.
            05 on-move PIC S9 VALUE 1.

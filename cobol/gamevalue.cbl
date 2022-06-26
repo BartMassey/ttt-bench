@@ -2,12 +2,11 @@
        PROGRAM-ID. GameValue.
 
        DATA DIVISION.
-       LOCAL-STORAGE SECTION.
+       WORKING-STORAGE SECTION.
        01 v PIC S9.
        01 side PIC S9.
        01 n PIC 9.
        01 d PIC 9.
-       01 od PIC 9.
        01 r PIC 9.
        01 c PIC 9.
 
@@ -31,54 +30,37 @@
       *        Scan for major diagonal win.
                MOVE 0 TO n
                PERFORM TEST AFTER VARYING d FROM 1 BY 1 UNTIL d = 3
-                   IF b-elem(d, d) EQUALS side THEN
-                       ADD 1 TO n
-                   END-IF
+                   MOVE d TO r
+                   MOVE d TO c
+                   PERFORM CheckSquare
                END-PERFORM
-               IF n EQUALS 3 THEN
-                   MOVE v TO RETURN-CODE
-                   GOBACK
-               END-IF
+               PERFORM CheckWin
 
       *        Scan for minor diagonal win.
                MOVE 0 TO n
                PERFORM TEST AFTER VARYING d FROM 1 BY 1 UNTIL d = 3
-                   SUBTRACT d FROM 2 GIVING od
-                   IF b-elem(d, od) EQUALS side THEN
-                       ADD 1 TO n
-                   END-IF
+                   MOVE d TO r
+                   SUBTRACT d FROM 2 GIVING c
+                   PERFORM CheckSquare
                END-PERFORM
-               IF n EQUALS 3 THEN
-                   MOVE v TO RETURN-CODE
-                   GOBACK
-               END-IF
+               PERFORM CheckWin
 
       *        Scan for row win.
                PERFORM TEST AFTER VARYING r FROM 1 BY 1 UNTIL r = 3
                    MOVE 0 TO n
                    PERFORM TEST AFTER VARYING c FROM 1 BY 1 UNTIL c = 3
-                       IF b-elem(r, c) EQUALS side THEN
-                           ADD 1 TO n
-                       END-IF
+                       PERFORM CheckSquare
                    END-PERFORM
-                   IF n EQUALS 3 THEN
-                       MOVE v TO RETURN-CODE
-                       GOBACK
-                   END-IF
+                   PERFORM CheckWin
                END-PERFORM
 
       *        Scan for column win.
                PERFORM TEST AFTER VARYING c FROM 1 BY 1 UNTIL c = 3
                    MOVE 0 TO n
                    PERFORM TEST AFTER VARYING r FROM 1 BY 1 UNTIL r = 3
-                       IF b-elem(r, c) EQUALS side THEN
-                           ADD 1 TO n
-                       END-IF
+                       PERFORM CheckSquare
                    END-PERFORM
-                   IF n EQUALS 3 THEN
-                       MOVE v TO RETURN-CODE
-                       GOBACK
-                   END-IF
+                   PERFORM CheckWin
                END-PERFORM
 
            END-PERFORM
@@ -97,4 +79,14 @@
            MOVE 0 TO RETURN-CODE
            GOBACK.
 
+           CheckWin.
+           IF n EQUALS 3 THEN
+               MOVE v TO RETURN-CODE
+               GOBACK
+           END-IF.
+
+           CheckSquare.
+           IF b-elem(r, c) EQUALS side THEN
+               ADD 1 TO n
+           END-IF.
        END PROGRAM GameValue.
