@@ -45,7 +45,7 @@ Per-iteration timings on my home machine (AMD Ryzen 9 3900X CPU
         JavaScript[rhino]:     0.72s
         Python[nuitka]:        1.4s
         Erlang[hipe]:          1.5s
-        COBOL:                 1.9s
+        COBOL:                 1.5s
         Python[python3]:       2.2s
         Erlang[beam]:          2.4s
         Nickle:                4.6s
@@ -143,11 +143,9 @@ most generic little `for`-loops ever.
   `erlc`.
 
 * COBOL: Compiled to C and thence to native using GNU Cobol
-  (aka OpenCobol). This benchmark probably isn't terribly
-  fair to the COBOL compiler. I am not at all knowledgeable
-  about COBOL: there may well be small code changes or
-  changes in compiler invocation that will speed the code up
-  dramatically.
+  (aka OpenCobol). See the README in
+  [the source repo](http://github.com/BartMassey/ttt-cobol)
+  for a thorough discussion.
 
 ## Replication
 
