@@ -4,7 +4,7 @@
 # License". Please see the file COPYING in this distribution
 # for license details.
 
-# Build and run all the implementations, reporting timing.
+# Run all the implementations, reporting timing.
 
 # I was using a non-standard version of the "time" command I
 # rewrote to get extra precision.  I plan to upstream

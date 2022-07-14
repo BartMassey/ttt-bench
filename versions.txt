@@ -1,4 +1,4 @@
-rustc 1.61.0
+rustc 1.62.0
 clang 12.0.1-21
 gcc 11.3.0
 javac 17.0.1
@@ -9,7 +9,7 @@ Rhino 1.7.7.2
 GHC 9.0.2
 PHP8.1 8.1.5
 PyPy 7.3.9
-nuitka3 0.8.2
+nuitka3 0.9
 Python 3.10.5
 erlang 23.2.6
 nickle 2.91
