@@ -1,20 +1,21 @@
         C[clang]:              0.0059s
-        Rust:                  0.0059s
-        C[gcc]:                0.013s
-        Java[100]:             0.019s
-        Java[10]:              0.024s
-        Go:                    0.028s
-        JavaScript[d8]:        0.062s
-        JavaScript[smjs]:      0.071s
+        Rust:                  0.0060s
+        C[gcc]:                0.014s
+        Java[OpenJDK100]:      0.018s
+        Java[OracleJDK100]:    0.019s
+        Go:                    0.029s
+        JavaScript[d8]:        0.061s
+        Java[Oracle1]:         0.080s
+        JavaScript[smjs]:      0.090s
         Haskell[bobw]:         0.14s
-        PHP[8.1]:              0.16s
-        Haskell[imperative]:   0.19s
+        PHP[8.1]:              0.15s
+        Haskell[imperative]:   0.18s
+        Haskell[functional]:   0.27s
         Python[pypy]:          0.28s
-        Haskell[functional]:   0.31s
-        JavaScript[rhino]:     0.72s
+        JavaScript[rhino]:     0.75s
         COBOL:                 1.4s
         Python[nuitka]:        1.4s
-        Erlang[hipe]:          1.5s
-        Python[python3]:       2.4s
-        Erlang[beam]:          2.6s
-        Nickle:                4.9s
+        Erlang[hipe]:          1.6s
+        Python[python3]:       2.2s
+        Erlang[beam]:          2.5s
+        Nickle:                4.7s

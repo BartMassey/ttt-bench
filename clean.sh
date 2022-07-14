@@ -17,7 +17,7 @@
 
 ( echo "java:" >&2
   cd java
-  rm -f *.class )
+  sh clean.sh )
 
 ( echo "go:" >&2
   cd go
@@ -26,27 +26,9 @@
   go clean
   rm -f ttt )
 
-( echo "haskell/imperative:" >&2
-  cd haskell/imperative
-  cabal v2-clean
-  rm -rf dist
-  rm -rf cabal.project.local
-  rm -f *~ )
-
-
-( echo "haskell/functional:" >&2
-  cd haskell/functional
-  cabal v2-clean
-  rm -rf dist
-  rm -rf cabal.project.local
-  rm -f *~ )
-
-( echo "haskell/bobw:" >&2
-  cd haskell/bobw
-  cabal v2-clean
-  rm -rf dist
-  rm -rf cabal.project.local
-  rm -f *~ )
+( echo "haskell:" >&2
+  cd haskell
+  sh clean.sh )
 
 ( echo "python:" >&2
   cd python

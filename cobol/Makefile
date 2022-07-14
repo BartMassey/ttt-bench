@@ -21,4 +21,4 @@ ttt.o: ttt.cbl
 $(OBJS): state.cpy Makefile
 
 clean:
-	-rm -f *.o ttt
+	-@rm -f *.o ttt

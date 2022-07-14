@@ -83,13 +83,14 @@ most generic little `for`-loops ever.
   `rustc`: could be real, could be an artifact of the
   benchmark setup being taken advantage of by LLVM.
 
-* Java[100]: Compiled with Oracle `javac` with `-O`. The
-  100-iteration timing loop amortizes away much of the
-  startup cost and gives time for the Hotspot JIT to kick
-  in.
+* Java[Oracle100]: Compiled with Oracle `javac` with `-O`.
 
-* Java[10]: Run with a 10-iteration timing loop for
-  comparison purposes.
+* Java[Oracle1]: Run with a 1-iteration timing loop for
+  comparison purposes.  A 100-iteration timing loop
+  amortizes away much of the startup cost and gives time for
+  the Hotspot JIT to kick in.
+
+* Java[OpenJDK100]: Compiled with OpenJDK `javac` with `-O`.
 
 * Go: Compiled with Golang (gc) via "go build".  Test
   version previously compiled with gccgo was much slower.

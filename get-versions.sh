@@ -2,7 +2,7 @@
 rustc --version | awk '{print $1, $2}'
 clang --version | head -1 | sed 's/ (.*//' | awk '{print $2, $NF}'
 gcc --version | head -1 | sed 's/ (.*)//' | awk '{print $1, $2}'
-javac -version 2>&1
+sh java/get-java-versions.sh
 go version | sed 's/ go/ /' | awk '{print $1, $3}'
 js91 --version | sed 's/.*-C/smjs C/'
 d8 </dev/null | head -1 | awk '{print $1, $3}' | sed 's/V8/d8/'

@@ -42,10 +42,12 @@ TIME="time -f %e"
   $TIME sh run.sh rhino 5 2>&1 >/dev/null )
 
 ( cd java
-  echo -n "Java[100]: 100 "
-  $TIME java TTT 100 2>&1 >/dev/null
-  echo -n "Java[10]: 10 "
-  $TIME java TTT 10 2>&1 >/dev/null )
+  echo -n "Java[OpenJDK100]: 100 "
+  $TIME sh run.sh openjdk 100 2>&1 >/dev/null
+  echo -n "Java[OracleJDK100]: 100 "
+  $TIME sh run.sh oracle 100 2>&1 >/dev/null
+  echo -n "Java[Oracle1]: 1 "
+  $TIME sh run.sh oracle 1 2>&1 >/dev/null )
 
 ( cd go
   echo -n "Go: 100 "
@@ -53,17 +55,17 @@ TIME="time -f %e"
 
 ( cd haskell/imperative
   echo -n "Haskell[imperative]: 10 "
-  $TIME cabal run ttt 10 2>&1 >/dev/null )
+  $TIME ./ttt 10 2>&1 >/dev/null )
 
 # We are stuck with one iteration until this
 # can be black-boxed properly. See Issue #6.
 ( cd haskell/functional
   echo -n "Haskell[functional]: 1 "
-  $TIME cabal run ttt 1 2>&1 >/dev/null )
+  $TIME ./ttt 1 2>&1 >/dev/null )
 
 ( cd haskell/bobw
   echo -n "Haskell[bobw]: 10 "
-  $TIME cabal run ttt 10 2>&1 >/dev/null )
+  $TIME ./ttt 10 2>&1 >/dev/null )
 
 ( cd erlang/beam
   echo -n "Erlang[beam]: 5 "

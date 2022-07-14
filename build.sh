@@ -19,8 +19,7 @@
 
 ( echo "java:" >&2
   cd java
-  rm -f *.class
-  javac -O *.java )
+  sh build.sh )
 
 ( echo "go:" >&2
   cd go
@@ -29,27 +28,9 @@
   go clean
   go build src/ttt.go )
 
-( echo "haskell/imperative:" >&2
-  cd haskell/imperative
-  cabal v2-update
-  cabal v2-clean
-  cabal v2-configure
-  cabal v2-build )
-
-
-( echo "haskell/functional:" >&2
-  cd haskell/functional
-  cabal v2-update
-  cabal v2-clean
-  cabal v2-configure
-  cabal v2-build )
-
-( echo "haskell/bobw:" >&2
-  cd haskell/bobw
-  cabal v2-update
-  cabal v2-clean
-  cabal v2-configure
-  cabal v2-build )
+( echo "haskell:" >&2
+  cd haskell
+  sh build.sh )
 
 ( echo "python:" >&2
   cd python
