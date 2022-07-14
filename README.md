@@ -144,7 +144,7 @@ most generic little `for`-loops ever.
 
 * COBOL: Compiled to C and thence to native using GNU Cobol
   (aka OpenCobol). See the README in
-  [the source repo](http://github.com/BartMassey/ttt-cobol)
+  [the original source repo](http://github.com/BartMassey/TTT-SOLVER-COBOL)
   for a thorough discussion.
 
 ## Replication
