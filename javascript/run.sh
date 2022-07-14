@@ -17,7 +17,7 @@ d8)
     d8 $TMP -- $COUNT
     ;;
 smjs)
-    smjs $TMP -- $COUNT
+    js91 $TMP -- $COUNT
     ;;
 rhino)
     rhino $TMP $COUNT

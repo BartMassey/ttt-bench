@@ -150,36 +150,39 @@ most generic little `for`-loops ever.
 ## Replication
 
 To run this yourself, you'll first need to install the
-languages being measured. They are all available from stock
-Debian. After that, you have a 3-step process:
+languages being measured. They are mostly available from stock
+Debian: if you are on a Debian-derived Linux distro, you can
+run
 
-* First compile what needs compiling with
+        sh install-languages.sh
 
-        sh build.sh
+as root to get these. Make sure `unstable` is in your `apt`
+sources: we want to use the latest tools.
 
-* When you've got everything compiled, actually
-  run the benchmarks with
+Sadly, `d8` is currently the fastest JavaScript interpreter
+I've found. It is not available in Debian, and building it
+is something of a project. Find current instructions on the
+interwebs, or just comment it out everywhere.
 
-        sh get-times.sh | tee times.txt
+For Rust it would probably be a good idea to use the latest
+version rather than the Debian-packaged one, since Debian
+doesn't keep up-to-date really well. Go to
+https://rustup.rs and follow those instructions, or
+uncomment the Rust line in `install-languages.sh`.
 
-  The `tee` isn't really necessary, but I like to
-  see that things are running.
+After that, things are straightforward: just compile
+and run the benchmarks and collect the results with
 
-* To get per-iteration times in Markdown suitable for
-  pasting into the README, go with
+        sh benchmark.sh
 
-        sh format-times.sh <times.txt >times.md
+You can then `git diff` the `versions.txt` and `times.md`
+files produced by this to see what's up.
 
-I could easily have built a shell script for this, but I've
-found there's a lot of manual iteration anyway, so for now I
-suggest you just go with it.
+When you are done, you may want to run
 
-Finally, you can run
+        sh clean.sh
 
-        sh get-versions.sh | tee versions.txt
-
-to save a lot of work tracking down the various version
-numbers.
+to clean up the big binaries here.
 
 ## License
 
