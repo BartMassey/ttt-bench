@@ -5,9 +5,9 @@
 # distribution of this software for license terms.
 
 make clean
-make CC="gcc -O4"
+make CC="gcc"
 mv -f ttt ttt-gcc
 make clean
-make CC="clang -O3"
+make CC="clang"
 mv -f ttt ttt-clang
-
+make clean

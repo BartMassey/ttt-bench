@@ -3,13 +3,12 @@
 # Please see the file COPYING in the source
 # distribution of this software for license terms.
 
+# XXX Specify a C compiler here. For benchmarking you need
+# to say.
 CC = none
-# CC = gcc -O4
-# CC = clang -O3
-#LONGTIME = -DLONGTIME=1000
 
-
-CFLAGS = $(LONGTIME) -flto -std=gnu99 -march=native -Wall
+# XXX The C compiler is presumed to take gcc-style flags.
+CFLAGS = -O3 -flto -std=gnu99 -march=native -Wall
 
 OBJS = ttt.o negamax.o gamevalue.o
 

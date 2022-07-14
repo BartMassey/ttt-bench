@@ -13,7 +13,7 @@
 
 ( echo "c:" >&2
   cd c
-  make clean )
+  sh clean.sh )
 
 ( echo "java:" >&2
   cd java
