@@ -161,6 +161,12 @@ I've found. It is not available in Debian, and building it
 is something of a project. Find current instructions on the
 interwebs, or just comment it out everywhere.
 
+(If you are really interested in comparing JavaScript runtime
+runtimes with `ttt-bench`, you might want to install
+[`jsvu`](https://github.com/GoogleChromeLabs/jsvu) and go
+from there. I'm not up for making `ttt-bench` depend on
+`node.js`, but if there's a better way patches are welcome.)
+
 For Rust it would probably be a good idea to use the latest
 version rather than the Debian-packaged one, since Debian
 doesn't keep up-to-date really well. Go to
@@ -180,6 +186,11 @@ When you are done, you may want to run
         sh clean.sh
 
 to clean up the big binaries here.
+
+## Limitations
+
+This code has a couple `x86` of dependencies in it. Patches
+to fix this would be welcome: see Issue #7.
 
 ## License
 
