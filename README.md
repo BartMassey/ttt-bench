@@ -27,28 +27,29 @@ at least a few seconds to amortize overhead.
 ## Results
 
 Per-iteration timings on my home machine (AMD Ryzen 9 3900X CPU
-@ 3.8GHz) from a run 2022-06-23 are as follows:
+@ 3.8GHz) from a run 2022-07-14 are as follows:
 
-        C[clang]:              0.0058s
-        Rust:                  0.0058s
-        C[gcc]:                0.013s
-        Java[100]:             0.018s
-        Java[10]:              0.026s
-        Go:                    0.028s
-        JavaScript[d8]:        0.068s
-        JavaScript[smjs]:      0.073s
+        C[clang]:              0.0059s
+        Rust:                  0.0060s
+        C[gcc]:                0.014s
+        Java[OpenJDK100]:      0.018s
+        Java[OracleJDK100]:    0.019s
+        Go:                    0.029s
+        JavaScript[d8]:        0.061s
+        Java[Oracle1]:         0.080s
+        JavaScript[smjs]:      0.090s
         Haskell[bobw]:         0.14s
         PHP[8.1]:              0.15s
         Haskell[imperative]:   0.18s
-        Haskell[functional]:   0.29s
-        Python[pypy]:          0.29s
-        JavaScript[rhino]:     0.72s
+        Haskell[functional]:   0.27s
+        Python[pypy]:          0.28s
+        JavaScript[rhino]:     0.75s
+        COBOL:                 1.4s
         Python[nuitka]:        1.4s
-        Erlang[hipe]:          1.5s
-        COBOL:                 1.5s
+        Erlang[hipe]:          1.6s
         Python[python3]:       2.2s
-        Erlang[beam]:          2.4s
-        Nickle:                4.6s
+        Erlang[beam]:          2.5s
+        Nickle:                4.7s
 
 I have quit listing times for Octave and Matlab. Octave
 seems stuck at about 110s, which is a pain to deal with. I
@@ -69,26 +70,21 @@ most generic little `for`-loops ever.
 * Rust: Compiled with `rustc` via `cargo` with the
   best optimizations I could find (see `Cargo.toml`).
 
-  Tried using vectors instead of arrays, but the result was
-  slower. See the branch `rust-vector`. Tried using the
-  `ndarray` crate; result was slightly unreadable, but quite
-  a bit slower. See the branch `rust-ndarray`.
-
 * C[clang]: Compiled with Clang with `-O3`. See the
   `Makefile` for other optimization flags.
 
-* C[gcc]: Compiled with GCC with `-O4`.  See the `Makefile`
-  for other optimization flags. I am deeply suspicious of
-  the doubled runtime of GCC *vs* LLVM's `clang` and
-  `rustc`: could be real, could be an artifact of the
-  benchmark setup being taken advantage of by LLVM.
+* C[gcc]: Compiled with GCC with `-O3`.  See the `Makefile`
+  for other optimization flags. The doubled runtime of GCC
+  *vs* LLVM's `clang` and `rustc` seems to be real after
+  some investigation. More research is needed.
 
 * Java[Oracle100]: Compiled with Oracle `javac` with `-O`.
 
-* Java[Oracle1]: Run with a 1-iteration timing loop for
+* Java[Oracle1]: Oracle `java` for one iteration for
   comparison purposes.  A 100-iteration timing loop
   amortizes away much of the startup cost and gives time for
-  the Hotspot JIT to kick in.
+  the Hotspot JIT to kick in. The difference is pretty
+  dramatic.
 
 * Java[OpenJDK100]: Compiled with OpenJDK `javac` with `-O`.
 
