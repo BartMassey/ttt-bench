@@ -77,7 +77,7 @@ TIME="time -f %e"
 
 ( cd python
   echo -n "Python[pypy]: 5 "
-  $TIME pypy ttt.py 5 2>&1 >/dev/null
+  $TIME pypy3 ttt.py 5 2>&1 >/dev/null
   echo -n "Python[nuitka]: 2 "
   $TIME ./ttt-nuitka 2 2>&1 >/dev/null
   echo -n "Python[python3]: 1 "

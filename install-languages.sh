@@ -1,14 +1,20 @@
 #!/bin/sh
 apt update
-apt -t unstable install \
+apt install \
     build-essential \
     clang gcc \
-    openjdk-19-jdk oracle-java17-installer \
+    openjdk-25-jdk \
+    default-jdk \
     golang-go \
     ghc cabal-install \
-    erlang-base-hipe \
     gnucobol4 \
+    erlang-dev \
+    php \
     python3 \
+    pypy3 \
     nickle \
-    libmozjs-91-dev rhino
+    libmozjs-128-dev \
+    rhino
+    # erlang-base-hipe
+    # oracle-java17-installer
     # rustc cargo
