@@ -6,7 +6,7 @@
 
 package negamax
 
-import "gamevalue"
+import "ttt/gamevalue"
 
 // Pseudocode:
 

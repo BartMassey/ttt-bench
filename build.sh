@@ -22,11 +22,11 @@
   sh build.sh )
 
 ( echo "go:" >&2
-  cd go
-  GOPATH="`pwd`"
-  export GOPATH
+  unset GOPATH
+  export GO111MODULE=on
+  cd go/src
   go clean
-  go build src/ttt.go )
+  go build )
 
 ( echo "haskell:" >&2
   cd haskell
