@@ -18,7 +18,7 @@
 //            v <- v'
 //     return v
 
-use gamevalue;
+use crate::gamevalue;
 
 pub fn negamax(onmove: i32, board: &mut[[i32;3];3]) -> i32 {
     let mut v = gamevalue::gamevalue(onmove, board);
